@@ -24,7 +24,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { hideRestart: true }
   },
   {
     path: '/',
