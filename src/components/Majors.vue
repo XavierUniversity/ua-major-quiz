@@ -4,7 +4,7 @@
     <h2>{{ title }}</h2>
     <ul>
       <li v-for="major in majors" :key="major">
-        <a :href="major.link" target="_blank">{{ major.major }}</a>
+        <a :href="major.structuredDataNodes[1].link" target="_blank">{{ major.structuredDataNodes[0].text }}</a>
       </li>
     </ul>
   </div>

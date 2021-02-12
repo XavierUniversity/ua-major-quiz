@@ -17,7 +17,8 @@ export default {
   },
   props: {
     question: String,
-    buttons: Array
+    buttons: Array,
+    getBlock: Function
   },
   methods: {
     navigate(route) {

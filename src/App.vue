@@ -1,9 +1,7 @@
 <template>
   <h1>Major Decisions</h1>
+  <p>Unsure of what to study? You're not alone. Answer these harmless questions and we'll direct you to a subject you may find interesting.</p>
   <router-view/>
-  
-  <router-link :to="{ name: 'Home' }" class="start-over" v-if="!$route.meta.hideRestart">Start Over</router-link>
-  
 </template>
 
 <style lang="scss">

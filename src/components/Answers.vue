@@ -1,18 +1,19 @@
 <template>
-    <button v-for="button in buttons" :key="button" @click="navigate(button.location)">
-      {{ button.answer }}
-    </button>
+  <button v-for="button in buttons" :key="button" @click="navigate(button.structuredDataNodes[1].blockId)">
+    {{ button.structuredDataNodes[0].text }}
+  </button>
 </template>
 
 <script>
 export default {
   name: 'Answers',
   props: {
-    buttons: Array
+    buttons: Array,
+    getBlock: Function
   },
   methods: {
     navigate(route) {
-      this.$router.push({ name: route });
+      this.$parent.$parent.getBlock(route);
     }
   }
 }
