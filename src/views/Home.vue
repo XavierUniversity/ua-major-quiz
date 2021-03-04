@@ -1,43 +1,40 @@
 <template>
-  <Question v-if="block.parentFolderPath == 'questions'" :question="block.metadata.title" :buttons="block.structuredData.structuredDataNodes" />
-  <Majors v-if="block.parentFolderPath == 'majors'" :title="block.metadata.title" :description="block.metadata.metaDescription" :majors="block.structuredData.structuredDataNodes"  />
-</template>
+   <div class="home">
+     <p>Unsure of what to study? You're not alone. Answer these harmless questions and we'll direct you to a subject you may find interesting.</p>
+     <Question question="What core class sounds the most exciting to you?" v-bind:buttons="[
+     {
+       answer: 'History 103 (Immigration to America)',
+       category: ['people']
+     },
+     {
+       answer: 'English 101 (Composition)',
+       category: ['communication', 'science']
+     },
+     {
+       answer: 'Biology 102 (Human Biology)',
+       category: ['health']
+     },
+     {
+       answer: 'Theatre 100 (Intro to Theatre)',
+       category: ['art']
+     }
+     ]" />
+   </div>
+ </template>
 
-<script>
-// @ is an alias to /src
-import Question from '@/components/Question.vue'
-import Majors from '@/components/Majors.vue'
-import axios from 'axios'
+ <script>
+ // @ is an alias to /src
+ import Question from '@/components/Question.vue'
 
-export default {
-  name: 'Home',
-  prop: {
-    id: String
-  },
-  data () {
-    return {
-      block: {},
-      question: String,
-      buttons: Array
-    }
-  },
-  components: {
-    Question, Majors
-  },
-  mounted: function () {
-    this.getBlock("96ed3be50afd01583b0a17a4e0695fa4")
-  },
-  methods: {
-    getBlock(id){
-      axios.get("https://www.xavier.edu/major-quiz/api", {
-        params: {
-          id: id
-        }
-      }).then( response => { 
-        this.block = response.data.asset.xhtmlDataDefinitionBlock
-        console.log(this.block);
-      })
-    }
-  }
-}
-</script>
+ export default {
+   name: 'Home',
+   components: {
+     Question
+   },
+   data(){
+     return {
+       cats: []
+     }
+   }
+ }
+ </script>
