@@ -1,10 +1,10 @@
 <template>
   <h1>Major Decisions</h1>
-  <div v-for="(question, index) in quiz" :key="question">
+  <div v-for="(question, index) in quiz" :key="index">
     <div v-show="index === questionIndex">
       <h2>{{ question.Question }}</h2>
       <ol>
-        <li v-for="answer in question.Answers" :key="answer">
+        <li v-for="answer in question.Answers" :key="answer.Answer">
           <label>
             <input type="radio"
               v-bind:value="answer.Category"
@@ -17,15 +17,20 @@
       <button v-if="questionIndex > 0" v-on:click="prev" class="nav">
         &laquo; Previous 
       </button>
-      <button v-on:click="next" class="nav">
+      <button v-if="questionIndex <= quiz.length - 2" v-on:click="next" class="nav">
         Next &raquo;
+      </button>
+      <button v-if="questionIndex == quiz.length - 1" v-on:click="score" class="nav">
+        Show my Major
       </button>
     </div>
   </div>
-  <div v-show="questionIndex === quiz.length">
-    <h2>Quiz Finished</h2>
-    <p>Total Score:</p>
-    {{ score() }}
+  <div v-if="questionIndex === quiz.length">
+    <ul>
+      <li v-for="item in sorted()" :key="item.bucket">
+        {{ item }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -265,14 +270,14 @@
   ];
   
   const buckets = [
-    'health',
-    'business',
-    'communication',
-    'science',
-    'education',
-    'technology',
-    'art',
-    'people'
+    'Health',
+    'Business',
+    'Communication',
+    'Science',
+    'Education',
+    'Technology',
+    'Art',
+    'People'
   ];
   
   export default {
@@ -289,10 +294,9 @@
         // It means: did the user answer the question correctly?
         userResponses: Array(quiz.length).fill(false),
         // Results array
-        results: {}
+        results: []
       }
     },
-    
     // The view will trigger these methods on click
     methods: {
       // Go to next question
@@ -303,14 +307,26 @@
         this.questionIndex--;
       },
       score: function() {
+        this.next(); 
         for ( const bucket of buckets ){
-          this.results[bucket] = this.userResponses.filter( function(item) {
+          let obj = {}
+          obj["bucket"] = bucket;
+          obj["count"] = this.userResponses.filter( function(item) {
             if ( typeof item == 'string' ) {
-             return item.includes(bucket);
+             return item.includes(bucket.toLowerCase());
             }
           }).length
+          
+          this.results.push(obj);
         }
         return this.results;
+      },
+      sorted: function () {
+        let sortedBuckets = this.results;
+        sortedBuckets.sort((a,b) => {
+          return b.count - a.count;
+        });
+        return sortedBuckets;
       }
     }
   }
