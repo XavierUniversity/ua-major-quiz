@@ -1,26 +1,30 @@
 <template>
-  <router-view/>
+  <Hero title="Major Quiz" image="https://www.xavier.edu/images/heroes/homepage_visit_2x.jpg" />
+  <div class="wrapper">
+    <div class="content">
+      <router-view/>
+    </div>
+  </div>
+  <Spacer size="64" />
 </template>
 
-<style lang="scss">
-body{
-  background: url('https://www.xavier.edu/images/heroes/homepage_visit_2x.jpg');
-  height: 100vh;
-  width: 100vw;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
+<script>
+import Hero from '@/components/Hero.vue'
+import Spacer from '@/components/Spacer.vue'
+export default {
+  components: {
+    Hero,
+    Spacer
+  }
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+</script>
+
+<style lang="scss">
+.content {
   text-align: center;
-  background: rgba(#0c2340, 0.85);  
   justify-content: center;
   align-self: center;
-  color: white;
   @media screen and (min-width: 992px){
     width: 60%;
     margin: 0 auto;
@@ -56,26 +60,5 @@ li {
 }
 input[type='radio']{
   margin-right: 0.75rem;
-}
-.nav{
-  background: transparent;
-  border: solid 2px white;
-  padding: 1rem;
-  color: white;
-  font-size: 1rem;
-  margin: 0.75rem;
-  width: 150px;
-  transition: background 250ms ease, color 250ms ease;
-  &:hover{
-    color: #0c2340;
-    background: white;
-  }
-}
-a{
-  color: white;
-  font-weight: 500;
-  &:hover, &:focus{
-    text-decoration: none;
-  }
 }
 </style>

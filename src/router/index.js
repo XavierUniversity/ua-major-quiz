@@ -10,6 +10,7 @@ import Health from '@/views/Majors/Health.vue'
 import People from '@/views/Majors/People.vue'
 import Science from '@/views/Majors/Science.vue'
 import Technology from '@/views/Majors/Technology.vue'
+import NotFound from '@/views/NotFound.vue'
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
     path: '/majors/technology',
     name: 'Technology',
     component: Technology
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 

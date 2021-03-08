@@ -12,7 +12,7 @@ export default {
 
 <style scoped lang="scss">
 div{
-  border-top: solid 1px rgba(white, 0.5);
+  border-top: solid 2px #f0f2f3;
   margin: 2rem 0;
   padding: 1rem 0;
 }

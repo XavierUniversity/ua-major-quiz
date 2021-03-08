@@ -1,8 +1,7 @@
 <template>
   <div v-if="questionIndex > quiz.length">
-    <h1>Major Decisions</h1>
-    <p>Find the major that could be your match! Take our Major Quiz to discover what you could be called to study as a Musketeer. </p>
-    <button v-on:click="start" class="nav">
+    <Intro title="Major Decisions" description="Find the major that could be your match! Take our Major Quiz to discover what you could be called to study as a Musketeer." />
+    <button v-on:click="start" class="btn btn--inline">
       Take the Quiz
     </button>
   </div>
@@ -20,13 +19,13 @@
         </li>
       </ol>
       <!-- The navigation buttons! -->
-      <button v-if="questionIndex > 0" v-on:click="prev" class="nav">
+      <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn--inline btn--prev">
         &laquo; Previous 
       </button>
-      <button v-if="questionIndex <= quiz.length - 2" v-on:click="next" class="nav">
+      <button v-if="questionIndex <= quiz.length - 2" v-on:click="next" class="btn btn--next btn--inline">
         Next &raquo;
       </button>
-      <button v-if="questionIndex == quiz.length - 1" v-on:click="score" class="nav">
+      <button v-if="questionIndex == quiz.length - 1" v-on:click="score" class="btn btn--inline">
         Show my Major
       </button>
     </div>
@@ -35,7 +34,7 @@
     <h2>That's it...</h2>
     <p>Based on your answers, we recommend checking out the following majors:</p>
     <div v-for="item in sorted()" :key="item.bucket" class="majors">
-      <router-link :to="{ name: item.bucket }" class="nav">{{ item.bucket }}</router-link>
+      <router-link :to="{ name: item.bucket }" class="btn btn--inline">{{ item.bucket }}</router-link>
     </div>
   </div>
  </template>
@@ -43,7 +42,7 @@
  <script>
  const quiz = [
     {
-      "Question" : "1.What core class sounds the most exciting to you?",
+      "Question" : "What core class sounds the most exciting to you?",
       "Answers"  : [
         {
           "Answer" : "History", 
@@ -64,7 +63,7 @@
       ]
     },
     {
-      "Question" : "2.What do you do the night before an exam?",
+      "Question" : "What do you do the night before an exam?",
       "Answers"  : [
         {
           "Answer" : "Study with a friend",  
@@ -85,7 +84,7 @@
       ]
     },
     {
-      "Question" : "3.What Xavier club or activity interests you most?",
+      "Question" : "What Xavier club or activity interests you most?",
       "Answers"  : [
         {
           "Answer" : "Running for a Student Governement Association position",
@@ -106,7 +105,7 @@
       ]
     },
     {
-      "Question" : "4.Your friends would most likely describe you as:",
+      "Question" : "Your friends would most likely describe you as:",
       "Answers"  : [
         {
           "Answer" : "Creative",
@@ -127,7 +126,7 @@
       ]
     },
     {
-      "Question" : "5.What was your favorite subject in high school?",
+      "Question" : "What was your favorite subject in high school?",
       "Answers"  : [
         {
           "Answer" : "Math",
@@ -148,7 +147,7 @@
       ]
     },
     {
-      "Question" : "6.When imagining your future job, which of these is most important to you?",
+      "Question" : "When imagining your future job, which of these is most important to you?",
       "Answers"  : [
         {
           "Answer" : "Doing work that is helping others",
@@ -169,7 +168,7 @@
       ]
     },
     {
-      "Question" : "7.How do you like to unwind after a busy day?",
+      "Question" : "How do you like to unwind after a busy day?",
       "Answers"  : [
         {
           "Answer" : "Reading",
@@ -190,7 +189,7 @@
       ]
     },
     {
-      "Question" : "8.How do you approach a problem?",
+      "Question" : "How do you approach a problem?",
       "Answers"  : [
         {
           "Answer" : "Consider all possible solutions before choosing one",
@@ -211,7 +210,7 @@
       ]
     },
     {
-      "Question" : "9.Where on Xavier's campus will you most likely hang out between classes?",
+      "Question" : "Where on Xavier's campus will you most likely hang out between classes?",
       "Answers"  : [
         {
           "Answer" : "Gallagher Student Center",
@@ -232,7 +231,7 @@
       ]
     },
     {
-      "Question" : "10.Do you enjoy working with others?",
+      "Question" : "Do you enjoy working with others?",
       "Answers"  : [
         {
           "Answer" : "Yes, I love working as a team",
@@ -253,7 +252,7 @@
       ]
     },
     {
-      "Question" : "11.What do you think is your biggest strength?",
+      "Question" : "What do you think is your biggest strength?",
       "Answers"  : [
         {
           "Answer" : "I am quick on my feet and a good problem solver",
@@ -286,8 +285,13 @@
     'People'
   ];
   
+  import Intro from '@/components/Intro.vue'
+  
   export default {
     name: 'Quiz',
+    components: {
+      Intro
+    },
     data() {
       return {
         // The Major Buckets
@@ -343,7 +347,9 @@
  </script>
  
  <style lang="scss" scoped>
- .majors{
-   padding: 1.5rem 0;
- }
+  .btn{
+    &--prev{
+      margin-right: 0.5rem;
+    }
+  }
  </style>
