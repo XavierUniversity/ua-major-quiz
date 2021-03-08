@@ -1,47 +1,35 @@
 <template>
-  <Majors title="Health" description="Put your brain and your heart to work by studying" :majors="[{
+  <Majors title="Health"  :majors="[{
       major: 'Exercise Science',
-      link: '#'
+      link: '/exercise-science/'
     },
     {
-      major: 'Health Services',
-      link: '#'
+      major: 'Health Services Administration',
+      link: '/health-services-administration/'
     },
     {
       major: 'Nursing',
-      link: '#'
-    },
-    {
-      major: 'Pre-Occupational Therapy',
-      link: '#'
+      link: '/nursing/'
     },
     {
       major: 'Psychology',
-      link: '#'
+      link: '/psychology/'
     },
     {
       major: 'Pre-Dental',
-      link: '#'
+      link: '/pre-dental/'
     },
     {
       major: 'Pre-Medicine',
-      link: '#'
+      link: '/pre-medicine/'
     },
     {
       major: 'Pre-Pharmacy',
-      link: '#'
-    },
-    {
-      major: 'Pre-Physical Therapy',
-      link: '#'
-    },
-    {
-      major: 'Pre-Veterinary',
-      link: '#'
+      link: '/pre-pharmacy/'
     },
     {
       major: 'Radiologic Technology and MRI',
-      link: '#'
+      link: '/radiologic-technology/index'
     }]" />
     
     <Disclaimer />

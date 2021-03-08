@@ -1,60 +1,69 @@
 <template>
-Hi there!
-<!--
-  <Majors title="Health" description="Put your brain and your heart to work by studying" :majors="[{
-      major: 'Exercise Science',
-      link: '#'
+  <Majors title="People (Past and Present)"  :majors="[
+    {
+      major: 'History',
+      link: '/history/'
     },
     {
-      major: 'Health Services',
-      link: '#'
+      major: 'International Studies',
+      link: '/international-studies/'
     },
     {
-      major: 'Nursing',
-      link: '#'
+      major: 'Modern Language and International Economics',
+      link: '/modern-language-and-international-economics/'
     },
     {
-      major: 'Pre-Occupational Therapy',
-      link: '#'
+      major: 'Criminal Justice',
+      link: '/criminal-justice/'
     },
     {
-      major: 'Psychology',
-      link: '#'
+      major: 'Political Science',
+      link: '/political-science/'
     },
     {
-      major: 'Pre-Dental',
-      link: '#'
+      major: 'Gender and Diversity Studies',
+      link: '/gender-and-diversity-studies/'
     },
     {
-      major: 'Pre-Medicine',
-      link: '#'
+      major: 'Pre-Law',
+      link: '/pre-law/'
     },
     {
-      major: 'Pre-Pharmacy',
-      link: '#'
+      major: 'Social Work',
+      link: '/social-work/'
     },
     {
-      major: 'Pre-Physical Therapy',
-      link: '#'
+      major: 'Sociology',
+      link: '/sociology/'
     },
     {
-      major: 'Pre-Veterinary',
-      link: '#'
+      major: 'Classical Humanities',
+      link: '/classical-humanities/'
     },
     {
-      major: 'Radiologic Technology and MRI',
-      link: '#'
+      major: 'Classics',
+      link: '/classics/'
+    },
+    {
+      major: 'International Studies',
+      link: '/international-studies/'
+    },
+    {
+      major: 'Theology',
+      link: '/theology/'
     }]" />
--->
+    <Disclaimer />
 </template>
 
 <script>
 // @ is an alias to /src
-//import Majors from '@/components/Majors.vue'
+import Majors from '@/components/Majors.vue'
+import Disclaimer from '@/components/Disclaimer.vue'
 export default {
-  name: 'Health',
+  name: 'People',
   components: {
-    //Majors
+    Majors,
+    Disclaimer
   }
 }
 </script>

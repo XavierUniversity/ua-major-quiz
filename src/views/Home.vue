@@ -43,7 +43,7 @@
  <script>
  const quiz = [
     {
-      "Question" : "What core class sounds the most exciting to you?",
+      "Question" : "1.What core class sounds the most exciting to you?",
       "Answers"  : [
         {
           "Answer" : "History", 
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "Question" : "What do you do the night before an exam?",
+      "Question" : "2.What do you do the night before an exam?",
       "Answers"  : [
         {
           "Answer" : "Study with a friend",  
@@ -72,7 +72,7 @@
         },
         {
           "Answer" : "Make flashcards and review notes", 
-          "Category" : 'communication,technology,science,business'
+          "Category" : 'technology,science,business'
         },
         {
           "Answer" : "Study a bit, but go to bed early", 
@@ -85,11 +85,11 @@
       ]
     },
     {
-      "Question" : "What Xavier club or activity interests you most?",
+      "Question" : "3.What Xavier club or activity interests you most?",
       "Answers"  : [
         {
           "Answer" : "Running for a Student Governement Association position",
-          "Category" : ''
+          "Category" : 'people,business'
         },
         {
           "Answer" : "Writing for the student newspaper, Newswire",
@@ -97,7 +97,7 @@
         },
         {
           "Answer" : "Playing intramural sports",
-          "Category" : ''
+          "Category" : 'health'
         },
         {
           "Answer" : "Starting a new club Xavier doesn't currently have",
@@ -106,7 +106,7 @@
       ]
     },
     {
-      "Question" : "Your friends would most likely describe you as:",
+      "Question" : "4.Your friends would most likely describe you as:",
       "Answers"  : [
         {
           "Answer" : "Creative",
@@ -114,7 +114,7 @@
         },
         {
           "Answer" : "Innovative",
-          "Category" : 'business,'
+          "Category" : 'business,technology'
         },
         {
           "Answer" : "Compassionate",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "Question" : "What was your favorite subject in high school?",
+      "Question" : "5.What was your favorite subject in high school?",
       "Answers"  : [
         {
           "Answer" : "Math",
@@ -135,7 +135,7 @@
         },
         {
           "Answer" : "Science",
-          "Category" : 'science,health'
+          "Category" : 'science,health,technology'
         },
         {
           "Answer" : "English",
@@ -143,20 +143,20 @@
         },
         {
           "Answer" : "History",
-          "Category" : '',
+          "Category" : 'people',
         }
       ]
     },
     {
-      "Question" : "When imagining your future job, which of these is most important to you?",
+      "Question" : "6.When imagining your future job, which of these is most important to you?",
       "Answers"  : [
         {
           "Answer" : "Doing work that is helping others",
-          "Category" : 'health'
+          "Category" : 'health,science,education,people'
         },
         {
           "Answer" : "Learning new things every day",
-          "Category" : 'communication'
+          "Category" : 'communication,science,art'
         },
         {
           "Answer" : "Being able to follow a daily routine",
@@ -169,19 +169,19 @@
       ]
     },
     {
-      "Question" : "How do you like to unwind after a busy day?",
+      "Question" : "7.How do you like to unwind after a busy day?",
       "Answers"  : [
         {
           "Answer" : "Reading",
-          "Category" : 'communication'
+          "Category" : 'communication,art,people'
         },
         {
           "Answer" : "Netflix or Video Games",
-          "Category" : ''
+          "Category" : 'technology'
         },
         {
           "Answer" : "Talking with friends and family",
-          "Category" : ''
+          "Category" : 'communication,education,people'
         },
         {
           "Answer" : "Working out",
@@ -190,36 +190,36 @@
       ]
     },
     {
-      "Question" : "How do you approach a problem?",
+      "Question" : "8.How do you approach a problem?",
       "Answers"  : [
         {
           "Answer" : "Consider all possible solutions before choosing one",
-          "Category" : 'health,business,communication'
+          "Category" : 'health,business,science'
         },
         {
           "Answer" : "Ask for advice from people who have been in a similar situation",
-          "Category" : ''
+          "Category" : 'communication,education,people'
         },
         {
           "Answer" : "Think about how you've handled other problems in the past",
-          "Category" : 'health,communication'
+          "Category" : 'health,education,technology'
         },
         {
           "Answer" : "Come up with something that's never been done before",
-          "Category" : 'business',
+          "Category" : 'business,communication,science,technology,art',
         }
       ]
     },
     {
-      "Question" : "Where on Xavier's campus will you most likely hang out between classes?",
+      "Question" : "9.Where on Xavier's campus will you most likely hang out between classes?",
       "Answers"  : [
         {
           "Answer" : "Gallagher Student Center",
-          "Category" : ''
+          "Category" : 'communication,people'
         },
         {
           "Answer" : "In your dorm or apartment",
-          "Category" : 'communication'
+          "Category" : 'technology,art'
         },
         {
           "Answer" : "O'Connor Sports Center",
@@ -232,44 +232,44 @@
       ]
     },
     {
-      "Question" : "Do you enjoy working with others?",
+      "Question" : "10.Do you enjoy working with others?",
       "Answers"  : [
         {
           "Answer" : "Yes, I love working as a team",
-          "Category" : 'business,communication'
+          "Category" : 'business,communication,education,people'
         },
         {
           "Answer" : "I don't mind it, but think I am more successful working alone",
-          "Category" : ''
+          "Category" : 'science,technology'
         },
         {
           "Answer" : "No, I prefer working alone",
-          "Category" : ''
+          "Category" : 'art'
         },
         {
           "Answer" : "Depends on the project or job",
-          "Category" : 'health,business',
+          "Category" : 'health,business,communication,art,people',
         }
       ]
     },
     {
-      "Question" : "What do you think is your biggest strength?",
+      "Question" : "11.What do you think is your biggest strength?",
       "Answers"  : [
         {
           "Answer" : "I am quick on my feet and a good problem solver",
-          "Category" : ''
+          "Category" : 'science,education,technology'
         },
         {
           "Answer" : "I am an excellent communicator",
-          "Category" : ''
+          "Category" : 'communication,education,people'
         },
         {
           "Answer" : "I'm creative and think outside the box",
-          "Category" : ''
+          "Category" : 'art'
         },
         {
           "Answer" : "I work well under pressure",
-          "Category" : 'health,business',
+          "Category" : 'health,business,science,people',
         }
       ]
     }

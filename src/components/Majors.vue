@@ -1,10 +1,9 @@
 <template>
-  <div class="hello">
-    <p>{{ description }}&hellip;</p>
+  <div>
     <h2>{{ title }}</h2>
     <ul>
       <li v-for="major in majors" :key="major.major">
-        <a :href="major.link">{{ major.major }}</a>
+        <a :href="'https://www.xavier.edu'+major.link">{{ major.major }}</a>
       </li>
     </ul>
   </div>

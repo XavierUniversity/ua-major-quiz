@@ -1,60 +1,50 @@
 <template>
-Hi there!
-<!--
-  <Majors title="Health" description="Put your brain and your heart to work by studying" :majors="[{
-      major: 'Exercise Science',
-      link: '#'
+  <Majors title="Science"  :majors="[
+    {
+      major: 'Biology',
+      link: '/biology/'
     },
     {
-      major: 'Health Services',
-      link: '#'
+      major: 'Biophysics',
+      link: '/biophysics/'
     },
     {
-      major: 'Nursing',
-      link: '#'
+      major: 'Chemistry',
+      link: '/chemistry/'
     },
     {
-      major: 'Pre-Occupational Therapy',
-      link: '#'
+      major: 'Environmental Science',
+      link: '/environmental-science/'
     },
     {
-      major: 'Psychology',
-      link: '#'
+      major: 'Life Sciences for Business',
+      link: '/life-sciences-for-business/'
     },
     {
-      major: 'Pre-Dental',
-      link: '#'
+      major: 'Physics',
+      link: '/physics/'
     },
     {
-      major: 'Pre-Medicine',
-      link: '#'
+      major: 'Applied Physics',
+      link: '/applied-physics/'
     },
     {
-      major: 'Pre-Pharmacy',
-      link: '#'
-    },
-    {
-      major: 'Pre-Physical Therapy',
-      link: '#'
-    },
-    {
-      major: 'Pre-Veterinary',
-      link: '#'
-    },
-    {
-      major: 'Radiologic Technology and MRI',
-      link: '#'
+      major: 'Engineering Physics',
+      link: '/engineering-physics/'
     }]" />
--->
+    <Disclaimer />
 </template>
 
 <script>
 // @ is an alias to /src
-//import Majors from '@/components/Majors.vue'
+import Majors from '@/components/Majors.vue'
+import Disclaimer from '@/components/Disclaimer.vue'
+
 export default {
-  name: 'Health',
+  name: 'Science',
   components: {
-    //Majors
+    Majors,
+    Disclaimer
   }
 }
 </script>

@@ -1,60 +1,77 @@
 <template>
-Hi there!
-<!--
-  <Majors title="Health" description="Put your brain and your heart to work by studying" :majors="[{
-      major: 'Exercise Science',
-      link: '#'
+  <Majors title="Business"  :majors="[
+    {
+      major: 'Accountancy',
+      link: '/accountancy/'
     },
     {
-      major: 'Health Services',
-      link: '#'
+      major: 'Actuarial Science',
+      link: '/actuarial-science/'
     },
     {
-      major: 'Nursing',
-      link: '#'
+      major: 'Economics',
+      link: '/economics/'
     },
     {
-      major: 'Pre-Occupational Therapy',
-      link: '#'
+      major: 'Entrepreneurial Studies',
+      link: '/entrepreneurial-studies/'
     },
     {
-      major: 'Psychology',
-      link: '#'
+      major: 'Finance',
+      link: '/finance/'
     },
     {
-      major: 'Pre-Dental',
-      link: '#'
+      major: 'Information Systems',
+      link: '/information-systems/'
     },
     {
-      major: 'Pre-Medicine',
-      link: '#'
+      major: 'International Business',
+      link: '/international-business/'
     },
     {
-      major: 'Pre-Pharmacy',
-      link: '#'
+      major: 'International Studies',
+      link: '/international-studies/'
     },
     {
-      major: 'Pre-Physical Therapy',
-      link: '#'
+      major: 'Management',
+      link: '/management/'
     },
     {
-      major: 'Pre-Veterinary',
-      link: '#'
+      major: 'Marketing',
+      link: '/marketing/'
     },
     {
-      major: 'Radiologic Technology and MRI',
-      link: '#'
+      major: 'Human Resources',
+      link: '/human-resources/'
+    },
+    {
+      major: 'Sport Marketing',
+      link: '/sport-marketing/'
+    },
+    {
+      major: 'Sport Management',
+      link: '/sport-management/'
+    },
+    {
+      major: 'Advertising',
+      link: '/advertising/'
+    },
+    {
+      major: 'Sustainability: Economics and Management',
+      link: '/sustainability-economics-and-management/'
     }]" />
--->
+  <Disclaimer />
 </template>
 
 <script>
 // @ is an alias to /src
-//import Majors from '@/components/Majors.vue'
+import Majors from '@/components/Majors.vue'
+import Disclaimer from '@/components/Disclaimer.vue'
 export default {
-  name: 'Health',
+  name: 'Business',
   components: {
-    //Majors
+    Majors,
+    Disclaimer
   }
 }
 </script>
