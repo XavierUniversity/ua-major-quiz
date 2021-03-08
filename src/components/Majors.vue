@@ -6,6 +6,7 @@
         <a :href="'https://www.xavier.edu'+major.link">{{ major.major }}</a>
       </li>
     </ul>
+    <router-link to="/" class="btn btn--inline">Restart the quiz &raquo;</router-link>
   </div>
 </template>
 
@@ -24,8 +25,10 @@ export default {
 <style scoped lang="scss">
 ul{
   text-align: left;
-  column-count: 2;
   margin-top: 0;
-  vertical-align: top;
+  @media screen and (min-width: 768px ){
+    column-count: 2;  
+    vertical-align: top;
+  }
 }
 </style>

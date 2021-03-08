@@ -32,7 +32,7 @@
   </div>
   <div v-if="questionIndex === quiz.length">
     <h2>That's it...</h2>
-    <p>Based on your answers, we recommend checking out the following majors:</p>
+    <p>Based on your answers, we recommend checking out the majors in the following category:</p>
     <div v-for="item in sorted()" :key="item.bucket" class="majors">
       <router-link :to="{ name: item.bucket }" class="btn btn--inline">{{ item.bucket }}</router-link>
     </div>
