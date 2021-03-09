@@ -1,5 +1,5 @@
 <template>
-  <Hero title="Major Quiz" image="https://www.xavier.edu/images/heroes/homepage_visit_2x.jpg" />
+  <Hero title="Major Quiz" image="https://www.xavier.edu/major-quiz/images/major_quiz-bg.jpg" />
   <div class="wrapper">
     <div class="content">
       <router-view/>
