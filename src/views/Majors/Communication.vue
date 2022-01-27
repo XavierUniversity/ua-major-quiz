@@ -22,7 +22,7 @@
     },
     {
       major: 'Advertising',
-      link: '/advertising/',
+      link: '/adv/',
       description: 'Dive into the realm of creative brainstorming, digital media and market research.'
     },
     {

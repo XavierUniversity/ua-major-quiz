@@ -331,7 +331,7 @@
   }
   h2.question {
     font-size: 1.5rem;
-    line-height: 1;
+    margin-bottom: 1.25rem;
     @media (min-width:992px){
       text-align: center;
     }
@@ -340,13 +340,22 @@
   ol{
     text-align: left;
     list-style-type: none;
-    padding: 0; margin: 0;
+    padding: 0; margin: 1rem 0 0;
     li {
+      margin: 0;
+      padding: 0;
+    }
+    label {
+      display: block;
       background: #fff;
       padding: 1.5rem 2rem;
       margin: 1rem;
       border-radius: 0.5rem;
       box-shadow: 0 0 0.5rem rgba(black, 0.25);
+      transition: background 250ms ease;
+      &:hover, &:focus{
+        background: darken(white, 5%);
+      }
     }
   }
   input[type='radio']{

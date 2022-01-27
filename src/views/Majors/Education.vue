@@ -2,7 +2,7 @@
   <Majors title="Education"  :majors="[
     {
       major: 'Early Childhood',
-      link: '/early-childhood-education/',
+      link: '/p-5-primary-education/',
       description: 'Gain the skills needed to shape the lives of children in preschool through third grade.'
     },
     {
