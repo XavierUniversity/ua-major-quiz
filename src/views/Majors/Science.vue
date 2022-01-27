@@ -2,49 +2,54 @@
   <Majors title="Science"  :majors="[
     {
       major: 'Biology',
-      link: '/biology/'
+      link: '/biology/',
+      description: 'Biology is the basis for many science-based careers from medicine to lab research.'
     },
     {
       major: 'Biophysics',
-      link: '/biophysics/'
+      link: '/biophysics/',
+      description: 'Explore principles in physics that describe patterns seen in biological systems.'
     },
     {
       major: 'Chemistry',
-      link: '/chemistry/'
+      link: '/chemistry/',
+      description: 'Study analytical, biochemistry, inorganic, organic, and physical chemistry.'
     },
     {
       major: 'Environmental Science',
-      link: '/environmental-science/'
+      link: '/environmental-science/',
+      description: 'Take steps toward solving environmental problems to help make the world a more sustainable place.'
     },
     {
       major: 'Life Sciences for Business',
-      link: '/life-sciences-for-business/'
+      link: '/life-sciences-for-business/',
+      description: 'Prepare for leadership in the Biotech industry by combining a bachelor of science with a Xavier MBA.'
     },
     {
       major: 'Physics',
-      link: '/physics/'
+      link: '/physics/',
+      description: 'Work in labs designed for experiments in electronics, holography, quantum optics, nuclear physics and more.'
     },
     {
       major: 'Applied Physics',
-      link: '/applied-physics/'
+      link: '/applied-physics/',
+      description: 'Explore the universe on a large scale all the way down to the sub-atomic level.'
     },
     {
       major: 'Engineering Physics',
-      link: '/engineering-physics/'
+      link: '/engineering-physics/',
+      description: 'Discover how natural science and engineering come together.'
     }]" />
-    <Disclaimer />
 </template>
 
 <script>
 // @ is an alias to /src
 import Majors from '@/components/Majors.vue'
-import Disclaimer from '@/components/Disclaimer.vue'
 
 export default {
   name: 'Science',
   components: {
     Majors,
-    Disclaimer
   }
 }
 </script>

@@ -19,4 +19,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+  h2, p{
+    color: white;
+  }
+</style>

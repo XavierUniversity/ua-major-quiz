@@ -2,19 +2,18 @@
   <Majors title="Technology"  :majors="[
     {
       major: 'Biophysics',
-      link: '/biophysics/'
+      link: '/biophysics/',
+      description: 'Explore principles in physics that describe patterns seen in biological systems.'
     },
     {
       major: 'Computer Science',
-      link: '/computer-science/'
-    },
-    {
-      major: 'Information Systems',
-      link: '/information-systems/'
+      link: '/computer-science/',
+      description: 'Gain an understanding of computer processes and algorithms.'
     },
     {
       major: 'Radiologic Technology and MRI',
-      link: '/radiologic-technology/'
+      link: '/radiologic-technology/',
+      description: 'Learn how to produce quality images of human tissues, organs, bones and vessels using imaging equipment.'
     }
   ]" />
   <Disclaimer />
@@ -23,12 +22,10 @@
 <script>
 // @ is an alias to /src
 import Majors from '@/components/Majors.vue'
-import Disclaimer from '@/components/Disclaimer.vue'
 export default {
   name: 'Technology',
   components: {
-    Majors,
-    Disclaimer
+    Majors
   }
 }
 </script>

@@ -1,35 +1,43 @@
 <template>
-  <Hero title="Major Quiz" image="https://www.xavier.edu/major-quiz/images/major_quiz-bg.jpg" />
-  <div class="wrapper">
-    <div class="content">
+    <div class="quiz">
       <router-view/>
     </div>
-  </div>
-  <Spacer size="64" />
 </template>
 
 <script>
-import Hero from '@/components/Hero.vue'
-import Spacer from '@/components/Spacer.vue'
 export default {
   components: {
-    Hero,
-    Spacer
   }
 }
 
 </script>
 
 <style lang="scss">
-.content {
+.quiz {
+  background-color: #0C2340;
+  background-image: url('~@/assets/quiz-background.webp');
+  background-size: cover;
   text-align: center;
-  justify-content: center;
-  align-self: center;
-  @media screen and (min-width: 992px){
-    width: 60%;
-    margin: 0 auto;
+  padding: 5.5rem 0.5rem;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: auto 0;
+  @media (min-width: 992px){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__q{
+    background: #f8f8f8;
+    width: 100%;
+    text-align: left;
     padding: 1rem;
-  }  
+    border-radius: 1.5rem;
+    @media (min-width: 992px){
+      width: 60%;
+      padding: 3.5rem 7rem;
+    }
+  }
 }
 .start-over{
   position: fixed;
@@ -42,23 +50,12 @@ export default {
   font-weight: bold;
   transition: all 250ms ease;
   &:hover{
-    background: #0c2340; 
+    background: #0c2340;
     color: white;
   }
 }
 
 button{
   cursor: pointer;
-}
-
-ol{
-  text-align: left;
-  list-style-type: upper-alpha;
-}
-li {
-  padding: 0.5rem 0;
-}
-input[type='radio']{
-  margin-right: 0.75rem;
 }
 </style>

@@ -1,40 +1,42 @@
 <template>
-  <div v-if="questionIndex > quiz.length">
-    <Intro title="Major Decisions" description="Find the major that could be your match! Take our Major Quiz to discover what you could be called to study as a Musketeer." />
-    <button v-on:click="start" class="btn btn--inline">
+  <div class="quiz__content" v-if="questionIndex > quiz.length">
+    <h2 class="quiz__content">Major Decisions</h2>
+    <p class="quiz__content">Additional content that will hopefully make things change place.</p>
+    <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
   </div>
-   <div v-for="(question, index) in quiz" :key="index">
-    <div v-if="index === questionIndex">
-      <h2>{{ question.Question }}</h2>
-      <ol>
-        <li v-for="answer in question.Answers" :key="answer.Answer">
-          <label>
-            <input type="radio"
-              v-bind:value="answer.Category"
-              v-bind:name="index"
-              v-model="userResponses[index]" />{{ answer.Answer }}
-          </label>
-        </li>
-      </ol>
-      <!-- The navigation buttons! -->
-      <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn--inline btn--prev">
-        &laquo; Previous 
-      </button>
-      <button v-if="questionIndex <= quiz.length - 2" v-on:click="next" class="btn btn--next btn--inline">
-        Next &raquo;
-      </button>
-      <button v-if="questionIndex == quiz.length - 1" v-on:click="score" class="btn btn--inline">
-        Show my Major
-      </button>
+  <div class="quiz__q" v-else>
+    <div class="progress" v-if="progress <= 100">
+      <div class="progress" style="border-color: #0c2340; background-color: #0c2340; margin: 0; color: white;"
+        :style="{ width: progress + '%' }">
+      </div>
     </div>
-  </div>
-  <div v-if="questionIndex === quiz.length">
-    <h2>That's it...</h2>
-    <p>Based on your answers, we recommend checking out the majors in the following category:</p>
-    <div v-for="item in sorted()" :key="item.bucket" class="majors">
-      <router-link :to="{ name: item.bucket }" class="btn btn--inline">{{ item.bucket }}</router-link>
+    <div v-for="(question, index) in quiz" :key="index">
+      <div v-if="index === questionIndex">
+        <h2 class="question">{{ question.Question }}</h2>
+        <ol>
+          <li v-for="answer in question.Answers" :key="answer.Answer">
+            <label>
+              <input type="radio"
+                v-bind:value="answer.Category"
+                v-bind:name="index"
+                v-model="userResponses[index]" /><span v-html="answer.Answer"></span>
+            </label>
+          </li>
+        </ol>
+        <hr />
+        <!-- The navigation buttons! -->
+        <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn--inline btn--prev">
+          &laquo; Previous
+        </button>
+        <button v-if="questionIndex <= quiz.length - 2" v-on:click="next" class="btn btn--next btn--inline">
+          Next &raquo;
+        </button>
+        <button v-if="questionIndex == quiz.length - 1" v-on:click="score" class="btn btn--inline btn--final">
+          Show my Major &raquo;
+        </button>
+      </div>
     </div>
   </div>
  </template>
@@ -45,19 +47,19 @@
       "Question" : "What core class sounds the most exciting to you?",
       "Answers"  : [
         {
-          "Answer" : "History", 
+          "Answer" : "History 103 (Immigration to America)",
           "Category" : 'people'
         },
         {
-          "Answer" : "English",
+          "Answer" : "English 101 (Composition)",
           "Category" : 'communication'
         },
         {
-          "Answer" : "Biology",
+          "Answer" : "Biology 102 (Human Biology)",
           "Category" : 'health,science',
         },
         {
-          "Answer" : "Theatre", 
+          "Answer" : "Theatre 100 (Intro to Theatre)",
           "Category" : 'art',
         }
       ]
@@ -66,19 +68,19 @@
       "Question" : "What do you do the night before an exam?",
       "Answers"  : [
         {
-          "Answer" : "Study with a friend",  
+          "Answer" : "Study with a friend",
           "Category" : 'people,communication,education'
         },
         {
-          "Answer" : "Make flashcards and review notes", 
+          "Answer" : "Make flashcards and review notes",
           "Category" : 'technology,science,business'
         },
         {
-          "Answer" : "Study a bit, but go to bed early", 
+          "Answer" : "Study a bit, but go to bed early",
           "Category" : 'health,science'
         },
         {
-          "Answer" : "Check in with classmates to see how they're preparing", 
+          "Answer" : "Check in with classmates to see how they're preparing",
           "Category" : 'communication',
         }
       ]
@@ -91,7 +93,7 @@
           "Category" : 'people,business'
         },
         {
-          "Answer" : "Writing for the student newspaper, Newswire",
+          "Answer" : "Writing for the student newspaper, <em>Xavier Newswire</em>",
           "Category" : 'communication'
         },
         {
@@ -126,27 +128,6 @@
       ]
     },
     {
-      "Question" : "What was your favorite subject in high school?",
-      "Answers"  : [
-        {
-          "Answer" : "Math",
-          "Category" : 'technology'
-        },
-        {
-          "Answer" : "Science",
-          "Category" : 'science,health,technology'
-        },
-        {
-          "Answer" : "English",
-          "Category" : 'communication'
-        },
-        {
-          "Answer" : "History",
-          "Category" : 'people',
-        }
-      ]
-    },
-    {
       "Question" : "When imagining your future job, which of these is most important to you?",
       "Answers"  : [
         {
@@ -175,7 +156,7 @@
           "Category" : 'communication,art,people'
         },
         {
-          "Answer" : "Netflix or Video Games",
+          "Answer" : "Netflix or video games",
           "Category" : 'technology'
         },
         {
@@ -185,48 +166,6 @@
         {
           "Answer" : "Working out",
           "Category" : 'health',
-        }
-      ]
-    },
-    {
-      "Question" : "How do you approach a problem?",
-      "Answers"  : [
-        {
-          "Answer" : "Consider all possible solutions before choosing one",
-          "Category" : 'health,business,science'
-        },
-        {
-          "Answer" : "Ask for advice from people who have been in a similar situation",
-          "Category" : 'communication,education,people'
-        },
-        {
-          "Answer" : "Think about how you've handled other problems in the past",
-          "Category" : 'health,education,technology'
-        },
-        {
-          "Answer" : "Come up with something that's never been done before",
-          "Category" : 'business,communication,science,technology,art',
-        }
-      ]
-    },
-    {
-      "Question" : "Where on Xavier's campus will you most likely hang out between classes?",
-      "Answers"  : [
-        {
-          "Answer" : "Gallagher Student Center",
-          "Category" : 'communication,people'
-        },
-        {
-          "Answer" : "In your dorm or apartment",
-          "Category" : 'technology,art'
-        },
-        {
-          "Answer" : "O'Connor Sports Center",
-          "Category" : 'health'
-        },
-        {
-          "Answer" : "McDonald Memorial Library",
-          "Category" : 'communication',
         }
       ]
     },
@@ -273,7 +212,7 @@
       ]
     }
   ];
-  
+
   const buckets = [
     'Health',
     'Business',
@@ -284,14 +223,10 @@
     'Art',
     'People'
   ];
-  
-  import Intro from '@/components/Intro.vue'
-  
+
   export default {
     name: 'Quiz',
-    components: {
-      Intro
-    },
+    components: {},
     data() {
       return {
         // The Major Buckets
@@ -321,7 +256,7 @@
         this.questionIndex--;
       },
       score: function() {
-        this.next(); 
+        this.next();
         for ( const bucket of buckets ){
           let obj = {}
           obj["bucket"] = bucket;
@@ -330,10 +265,11 @@
              return item.includes(bucket.toLowerCase());
             }
           }).length
-          
+
           this.results.push(obj);
         }
-        return this.results;
+        var bucket = this.sorted()[0].bucket;
+        return this.$router.push({name: bucket});
       },
       sorted: function () {
         let sortedBuckets = this.results;
@@ -342,14 +278,78 @@
         });
         return sortedBuckets.slice(0,1);
       }
+    },
+    computed: {
+      progress() {
+        return ( (this.questionIndex + 1) / this.quiz.length ) * 100;
+      }
     }
   }
  </script>
- 
+
  <style lang="scss" scoped>
-  .btn{
-    &--prev{
-      margin-right: 0.5rem;
+  .quiz{
+    &__content{
+      color: white;
     }
+  }
+  .btn{
+    &--secondary {
+      background: #007DB3;
+      color: white;
+      &:hover, &:focus, &:active{
+        background: darken(#007DB3, 10%);
+      }
+    }
+    &--prev, &--next{
+      width: 137px;
+    }
+    &--next, &--final{
+      float: right;
+    }
+  }
+  .progress {
+    width: 100%;
+    background-color: #e8e8e8;
+    border-collapse: collapse;
+    border: 0.25rem solid #f8f8f8;
+    margin: 1rem auto 2rem;
+    transition: width 500ms;
+    border-radius: 1rem;
+  }
+
+  .quiz-container{
+    background: #f3f3f3;
+    padding: 2rem;
+    border-radius: 1.5rem;
+  }
+  hr {
+    height: 0.25rem;
+    background: #bbb;
+    margin: 2rem 0;
+    display: block;
+  }
+  h2.question {
+    font-size: 1.5rem;
+    line-height: 1;
+    @media (min-width:992px){
+      text-align: center;
+    }
+  }
+
+  ol{
+    text-align: left;
+    list-style-type: none;
+    padding: 0; margin: 0;
+    li {
+      background: #fff;
+      padding: 1.5rem 2rem;
+      margin: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 0.5rem rgba(black, 0.25);
+    }
+  }
+  input[type='radio']{
+    margin-right: 0.75rem;
   }
  </style>
