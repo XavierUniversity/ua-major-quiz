@@ -56,11 +56,6 @@
       description: 'Study Greek and Roman mythology, art and archaeology.'
     },
     {
-      major: 'International Studies',
-      link: '/international-studies/',
-      description: 'Discover new world views and learn to assess international trends.'
-    },
-    {
       major: 'Theology',
       link: '/theology/',
       description: 'Embrace humanity\'s experience of God and discover how it\'s expressed through doctrines and rituals.'

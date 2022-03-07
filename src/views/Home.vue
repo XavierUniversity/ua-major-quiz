@@ -89,7 +89,7 @@
       "Question" : "What Xavier club or activity interests you most?",
       "Answers"  : [
         {
-          "Answer" : "Running for a Student Governement Association position",
+          "Answer" : "Running for a Student Government Association position",
           "Category" : 'people,business'
         },
         {

@@ -10,11 +10,6 @@
       link: '/computer-science/',
       description: 'Gain an understanding of computer processes and algorithms.'
     },
-    {
-      major: 'Radiologic Technology and MRI',
-      link: '/radiologic-technology/',
-      description: 'Learn how to produce quality images of human tissues, organs, bones and vessels using imaging equipment.'
-    }
   ]" />
   <Disclaimer />
 </template>
