@@ -1,7 +1,7 @@
 <template>
   <div class="quiz__content" v-if="questionIndex > quiz.length">
-    <h2 class="quiz__content">Major Decisions</h2>
-    <p class="quiz__content">Additional content that will hopefully make things change place.</p>
+    <h2 class="quiz__content">Find Your Major</h2>
+    <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
@@ -281,7 +281,7 @@
     },
     computed: {
       progress() {
-        return ( (this.questionIndex + 1) / this.quiz.length ) * 100;
+        return ( (this.questionIndex) / this.quiz.length ) * 100;
       }
     }
   }
