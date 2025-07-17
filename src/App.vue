@@ -1,11 +1,11 @@
 <template>
-    <div class="quiz">
-      <router-view/>
-    </div>
+  <div class="quiz">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script setup>
-  
+
 </script>
 
 <style lang="scss">
@@ -18,24 +18,28 @@
   min-height: 100vh;
   flex-direction: column;
   margin: auto 0;
-  @media (min-width: 992px){
+
+  @media (min-width: 992px) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  &__q{
+
+  &__q {
     background: #f8f8f8;
     width: 100%;
     text-align: left;
     padding: 1rem;
     border-radius: 1.5rem;
-    @media (min-width: 992px){
+
+    @media (min-width: 992px) {
       width: 60%;
       padding: 3.5rem 7rem;
     }
   }
 }
-.start-over{
+
+.start-over {
   position: fixed;
   bottom: 24px;
   left: 24px;
@@ -45,13 +49,14 @@
   text-decoration: none;
   font-weight: bold;
   transition: all 250ms ease;
-  &:hover{
+
+  &:hover {
     background: #0c2340;
     color: white;
   }
 }
 
-button{
+button {
   cursor: pointer;
 }
 </style>
