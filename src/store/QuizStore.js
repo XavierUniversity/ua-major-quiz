@@ -6,6 +6,7 @@ import { useSessionStorage } from "@vueuse/core";
 
 const defaultState = {
   _questionMap: {},
+  _instanceID : ""
 };
 export const useQuizStore = defineStore("QuizStore", {
   state: () => {
@@ -13,6 +14,7 @@ export const useQuizStore = defineStore("QuizStore", {
   },
   getters: {
     questionMap: (state) => state._questionMap,
+    instanceID: (state)=> state._instanceID
   },
   actions: {
     async fetchQuestions() {
@@ -23,9 +25,9 @@ export const useQuizStore = defineStore("QuizStore", {
         let res = await api.setAnswers(answers);
         this._questionMap = res.data;
     },
-    async setInstance(){
-        let res = await api.setAnswers(answers);
-        this._questionMap = res.data;
+    async setInstance(answers){
+        let res = await api.setInstance(answers);
+        this._instanceID = res.data;
     }
   },
 });

@@ -1,12 +1,12 @@
 <template>
-  <div class="quiz__content" v-if="questionIndex === -1">
+  <div class="quiz__content" v-if="isQuizActive == false && isInitialized == false">
     <h2 class="quiz__content">Find Your Major</h2>
     <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
   </div>
-  <div class="quiz__q" v-else>
+  <div class="quiz__q" v-if="isQuizActive && isInitialized">
     <div class="progress" v-if="progress <= 100">
       <div class="progress" style="border-color: #0c2340; background-color: #0c2340; margin: 0; color: white;"
         :style="{ width: progress + '%' }">
@@ -33,6 +33,20 @@
       </div>
     </div>
   </div>
+
+  <div class="quiz__q" v-if="isInitialized === false && isQuizActive === true">
+    <v-form>
+      <v-text-field label="name" v-model="name"></v-text-field>
+      <v-text-field label="email" v-model="email"></v-text-field>
+      <v-date-input v-model="birthdate" validate-on-blur label="Student's Birthhdate"></v-date-input>
+
+
+    </v-form>
+
+    <button v-on:click="initialize" class="btn btn--secondary btn--inline">
+      Take the Quiz
+    </button>
+  </div>
 </template>
 
 <script setup>
@@ -56,6 +70,14 @@ const buckets = ref([
 const questionIndex = ref(-1);
 const userResponses = ref([]);
 
+const isInitialized = ref(false);
+const isQuizActive = ref(false);
+
+const name = ref("");
+const email = ref("");
+const birthdate = ref("");
+
+
 
 const quizStore = useQuizStore();
 
@@ -68,6 +90,15 @@ onBeforeMount(async () => {
 
 function start() {
   questionIndex.value = 0;
+  isQuizActive.value = true;
+}
+
+async function initialize() {
+
+  let sendData = { name: name.value, email: email.value, birthdate: birthdate.value };
+
+  await quizStore.setInstance(sendData);
+  isInitialized.value = true;
 }
 
 function next() {
@@ -80,10 +111,9 @@ function prev() {
 
 }
 
-async function score(){
+async function score() {
 
-  let sendData = {"answers": [...userResponses.values]};
-  console.log(sendData);
+  let sendData = { "answers": [...userResponses.values] };
 
   await quizStore.postResults(sendData);
   console.log(userResponses.value);
