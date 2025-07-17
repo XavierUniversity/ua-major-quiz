@@ -17,10 +17,10 @@
       <div v-if="index === questionIndex">
         <h2 class="question">{{ question.Question }}</h2>
         <ol>
-          <li v-for="answer in question.Answers" :key="answer.Answer">
+          <li v-for="answer in question.Answers" >
             <label>
-              <input type="radio" v-bind:value="answer.Category" v-bind:name="index"
-                v-model="userResponses[index]" /><span v-html="answer.Answer"></span>
+              <input type="radio"  
+                v-model="userResponses[index]" /><span v-html="answer.Text"></span>
             </label>
           </li>
         </ol>
@@ -60,6 +60,7 @@ const buckets = ref([
 
 const questionIndex = ref(0);
 const progress = ref(0);
+const userResponses = ref([]);
 
 
 const quizStore = useQuizStore();
@@ -68,9 +69,9 @@ const { questionMap } = storeToRefs(quizStore);
 
 
 onBeforeMount(async () => {
+  console.log(71)
 
-
-  await quizStore.fetchQuestions(); s
+  await quizStore.fetchQuestions();
 
 
 })
