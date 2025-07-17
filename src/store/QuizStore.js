@@ -19,5 +19,13 @@ export const useQuizStore = defineStore("QuizStore", {
       let res = await api.getQuestions();
       this._questionMap = res.data;
     },
+    async postResults(){
+        let res = await api.setAnswers(answers);
+        this._questionMap = res.data;
+    },
+    async setInstance(){
+        let res = await api.setAnswers(answers);
+        this._questionMap = res.data;
+    }
   },
 });

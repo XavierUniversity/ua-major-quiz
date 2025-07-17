@@ -1,11 +1,10 @@
 <template>
-  <div class="quiz__content" v-if="questionIndex > questionMap.length">
+  <div class="quiz__content" v-if="questionIndex === -1">
     <h2 class="quiz__content">Find Your Major</h2>
     <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
-    {{ questionMap }}
   </div>
   <div class="quiz__q" v-else>
     <div class="progress" v-if="progress <= 100">
@@ -16,14 +15,10 @@
     <div v-for="(question, index) in questionMap" :key="index">
       <div v-if="index === questionIndex">
         <h2 class="question">{{ question.Question }}</h2>
-        <ol>
-          <li v-for="answer in question.Answers" >
-            <label>
-              <input type="radio"  
-                v-model="userResponses[index]" /><span v-html="answer.Text"></span>
-            </label>
-          </li>
-        </ol>
+        <v-radio-group v-model="userResponses[question.QuestionID]">
+          <v-radio v-for="(answer, index) in question.Answers" :value="answer.ID" :label="answer.Text"></v-radio>
+        </v-radio-group>
+
         <hr />
         <!-- The navigation buttons! -->
         <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn--inline btn--prev">
@@ -43,7 +38,7 @@
 <script setup>
 import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
-import { onBeforeMount, ref, reactive } from "vue";
+import { onBeforeMount, ref, reactive, computed } from "vue";
 
 
 
@@ -58,8 +53,7 @@ const buckets = ref([
   'People'
 ]);
 
-const questionIndex = ref(0);
-const progress = ref(0);
+const questionIndex = ref(-1);
 const userResponses = ref([]);
 
 
@@ -69,16 +63,35 @@ const { questionMap } = storeToRefs(quizStore);
 
 
 onBeforeMount(async () => {
-  console.log(71)
-
   await quizStore.fetchQuestions();
-
-
 })
 
+function start() {
+  questionIndex.value = 0;
+}
 
+function next() {
+  questionIndex.value++;
 
+}
 
+function prev() {
+  questionIndex.value--;
+
+}
+
+async function score(){
+
+  let sendData = {"answers": [...userResponses.values]};
+  console.log(sendData);
+
+  await quizStore.postResults(sendData);
+  console.log(userResponses.value);
+}
+
+const progress = computed(() => {
+  return ((questionIndex.value) / questionMap.value.length) * 100
+});
 
 </script>
 

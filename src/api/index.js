@@ -7,7 +7,7 @@ export default {
   setInstance() {
     return apiClient.get("/major_quiz/set_instance");
   },
-  setAnswer() {
+  setAnswers() {
     return apiClient.get("/major_quiz/set_answer");
   },
   

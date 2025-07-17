@@ -1,0 +1,13 @@
+@use 'vuetify/settings' with ($card-background: #f5f5fd,
+    $list-subheader-font-size: 1.5rem,
+    $chip-background: #1a1aff,
+    $chip-color: white,
+    $button-color: white,
+    $card-padding: 20px,
+    $card-border-radius: 0px,
+    $expansion-panel-background-color: #f5f5fd,
+    $list-background: #f5f5fd,
+    $table-header-height: 20px,
+    $table-row-height: 20px,
+    $skeleton-loader-background: transparent
+    );
