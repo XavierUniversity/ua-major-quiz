@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz__content" v-if="questionIndex > quiz.length">
+  <div class="quiz__content" v-if="questionIndex > questionMap.length">
     <h2 class="quiz__content">Find Your Major</h2>
     <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
@@ -13,7 +13,7 @@
         :style="{ width: progress + '%' }">
       </div>
     </div>
-    <div v-for="(question, index) in quiz" :key="index">
+    <div v-for="(question, index) in questionMap" :key="index">
       <div v-if="index === questionIndex">
         <h2 class="question">{{ question.Question }}</h2>
         <ol>
@@ -29,10 +29,10 @@
         <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn--inline btn--prev">
           &laquo; Previous
         </button>
-        <button v-if="questionIndex <= quiz.length - 2" v-on:click="next" class="btn btn--next btn--inline">
+        <button v-if="questionIndex <= questionMap.length - 2" v-on:click="next" class="btn btn--next btn--inline">
           Next &raquo;
         </button>
-        <button v-if="questionIndex == quiz.length - 1" v-on:click="score" class="btn btn--inline btn--final">
+        <button v-if="questionIndex == questionMap.length - 1" v-on:click="score" class="btn btn--inline btn--final">
           Show my Major &raquo;
         </button>
       </div>
@@ -44,9 +44,7 @@
 import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref, reactive } from "vue";
-import XuBreadCrumb from "@/components/XuBreadCrumb.vue";
 
-import { isEmpty } from "@/assets/js/utility.js";
 
 
 const buckets = ref([

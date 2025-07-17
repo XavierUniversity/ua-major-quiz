@@ -2,13 +2,13 @@ import apiClient from "./axios";
 
 export default {
   getQuestions() {
-    return apiClient.get("/MajorQuiz/get_questions");
+    return apiClient.get("/major_quiz/get_questions");
   },
   setInstance() {
-    return apiClient.get("/MajorQuiz/set_instance");
+    return apiClient.get("/major_quiz/set_instance");
   },
   setAnswer() {
-    return apiClient.get("/MajorQuiz/set_answer");
+    return apiClient.get("/major_quiz/set_answer");
   },
   
 };
