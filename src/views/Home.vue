@@ -36,10 +36,16 @@
 
   <div class="quiz__q" v-if="isInitialized === false && isQuizActive === true && hasResult === false">
     <v-form>
-      <v-text-field label="name" v-model="name"></v-text-field>
-      <v-text-field label="email" v-model="email"></v-text-field>
+      <v-text-field label="Name" v-model="name"></v-text-field>
+      <v-text-field label="Email" v-model="email"></v-text-field>
       <v-date-input v-model="birthdate" validate-on-blur label="Student's Birthhdate"></v-date-input>
 
+
+      <v-radio-group v-model="quizMode">
+        <v-radio value="certain" label="Yes, I’m certain!" ></v-radio>
+        <v-radio value="explore" label="I think so, but I’m open to exploring."></v-radio>
+        <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
+      </v-radio-group>
 
     </v-form>
 
@@ -81,16 +87,19 @@ const hasResult = ref(false);
 const name = ref("");
 const email = ref("");
 const birthdate = ref("");
+const quizMode= ref("intro");
 
 
 
 const quizStore = useQuizStore();
 
-const { questionMap, outcome } = storeToRefs(quizStore);
+const { questionMap, outcome, majorMap } = storeToRefs(quizStore);
 
 
 onBeforeMount(async () => {
   await quizStore.fetchQuestions();
+  await quizStore.fetchMajors();
+
 })
 
 function start() {
@@ -115,7 +124,6 @@ function prev() {
 }
 
 async function score() {
-  console.log(userResponses.value);
   await quizStore.postResults(userResponses.value);
   hasResult.value = true;
 }

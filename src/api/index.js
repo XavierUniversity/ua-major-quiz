@@ -14,4 +14,12 @@ export default {
       ...sendData,
     });
   },
+  postInstanceMajor(sendData){
+    return  apiClient.post("/major_quiz/set_instance_major",{
+      ...sendData
+    })
+  },
+  getMajors(){
+    return apiClient.get("/major_quiz/get_major_list");
+  }
 };

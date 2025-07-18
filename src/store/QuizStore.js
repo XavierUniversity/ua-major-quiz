@@ -8,6 +8,7 @@ const defaultState = {
   _questionMap: {},
   _instanceID: "",
   _outcome: "",
+  _majorMaps: {},
 };
 export const useQuizStore = defineStore("QuizStore", {
   state: () => {
@@ -17,6 +18,7 @@ export const useQuizStore = defineStore("QuizStore", {
     questionMap: (state) => state._questionMap,
     instanceID: (state) => state._instanceID,
     outcome: (state) => state._outcome,
+    majorsMap: (state) => state._majorMaps,
   },
   actions: {
     async fetchQuestions() {
@@ -33,6 +35,10 @@ export const useQuizStore = defineStore("QuizStore", {
     async setInstance(answers) {
       let res = await api.setInstance(answers);
       this._instanceID = res.data;
+    },
+    async fetchMajors() {
+      let res = await api.getMajors();
+      this._majorMap = res.data;
     },
   },
 });
