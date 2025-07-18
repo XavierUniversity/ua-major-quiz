@@ -5,12 +5,13 @@ export default {
     return apiClient.get("/major_quiz/get_questions");
   },
   setInstance(sendData) {
-    return apiClient.post("/major_quiz/set_instance",{
-      ...sendData
+    return apiClient.post("/major_quiz/set_instance", {
+      ...sendData,
     });
   },
-  setAnswers() {
-    return apiClient.get("/major_quiz/set_answer");
+  setResults(sendData) {
+    return apiClient.post("/major_quiz/set_result", {
+      ...sendData,
+    });
   },
-  
 };
