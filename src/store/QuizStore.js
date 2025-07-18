@@ -28,7 +28,7 @@ export const useQuizStore = defineStore("QuizStore", {
         Answers: answers,
         InstanceID: this.instanceID,
       });
-      this.outcome = res.data;
+      this._outcome = res.data;
     },
     async setInstance(answers) {
       let res = await api.setInstance(answers);

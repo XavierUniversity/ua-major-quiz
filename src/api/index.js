@@ -10,7 +10,7 @@ export default {
     });
   },
   setResults(sendData) {
-    return apiClient.post("/major_quiz/set_result", {
+    return apiClient.post("/major_quiz/set_results", {
       ...sendData,
     });
   },

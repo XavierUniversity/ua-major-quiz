@@ -1,12 +1,12 @@
 <template>
-  <div class="quiz__content" v-if="isQuizActive == false && isInitialized == false">
+  <div class="quiz__content" v-if="isQuizActive == false && isInitialized == false && hasResult == false">
     <h2 class="quiz__content">Find Your Major</h2>
     <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
   </div>
-  <div class="quiz__q" v-if="isQuizActive && isInitialized">
+  <div class="quiz__q" v-if="isQuizActive && isInitialized && !hasResult">
     <div class="progress" v-if="progress <= 100">
       <div class="progress" style="border-color: #0c2340; background-color: #0c2340; margin: 0; color: white;"
         :style="{ width: progress + '%' }">
@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div class="quiz__q" v-if="isInitialized === false && isQuizActive === true">
+  <div class="quiz__q" v-if="isInitialized === false && isQuizActive === true && hasResult === false">
     <v-form>
       <v-text-field label="name" v-model="name"></v-text-field>
       <v-text-field label="email" v-model="email"></v-text-field>
@@ -47,13 +47,17 @@
       Take the Quiz
     </button>
   </div>
+
+  <div v-if="hasResult === true">
+    <Majors :title="outcome" :majors="[]"></Majors>
+  </div>
 </template>
 
 <script setup>
 import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref, reactive, computed } from "vue";
-
+import Majors from '@/components/Majors.vue';
 
 
 const buckets = ref([
@@ -72,6 +76,7 @@ const userResponses = ref([]);
 
 const isInitialized = ref(false);
 const isQuizActive = ref(false);
+const hasResult = ref(false);
 
 const name = ref("");
 const email = ref("");
@@ -81,7 +86,7 @@ const birthdate = ref("");
 
 const quizStore = useQuizStore();
 
-const { questionMap } = storeToRefs(quizStore);
+const { questionMap, outcome } = storeToRefs(quizStore);
 
 
 onBeforeMount(async () => {
@@ -103,20 +108,16 @@ async function initialize() {
 
 function next() {
   questionIndex.value++;
-
 }
 
 function prev() {
   questionIndex.value--;
-
 }
 
 async function score() {
-
-  let sendData = { "answers": [...userResponses.values] };
-
-  await quizStore.postResults(sendData);
   console.log(userResponses.value);
+  await quizStore.postResults(userResponses.value);
+  hasResult.value = true;
 }
 
 const progress = computed(() => {
