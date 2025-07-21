@@ -1,12 +1,40 @@
 <template>
-  <div class="quiz__content" v-if="!isQuizActive && !isInitialized && !hasResult">
+  <div class="quiz__content" v-if="activePhase === 'intro'">
     <h2 class="quiz__content">Find Your Major</h2>
     <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
   </div>
-  <div class="quiz__q" v-if="isQuizActive && isInitialized && !hasResult && quizMode !== 'certain'">
+
+  <div class="quiz__q" v-if="activePhase === 'form'">
+    <v-form v-model="isResponseValid" @submit.prevent="initialize()">
+      <v-text-field label="Name" v-model="name" :rules="[rules.empty()]"></v-text-field>
+      <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
+      <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]"
+        label="Student's Birthhdate"></v-date-input>
+
+
+      <v-radio-group v-model="quizMode" :rules="[rules.empty()]">
+        <v-radio value="certain" label="Yes, I’m certain!"></v-radio>
+        <v-radio value="explore" label="I think so, but I’m open to exploring."></v-radio>
+        <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
+      </v-radio-group>
+
+      <v-autocomplete :rules="[rules.empty()]" v-if="(quizMode == 'certain' || quizMode == 'explore')" label="Select Major" v-model="selectedMajor"
+        item-title="Name" item-value="ID" :items="majorsMap"></v-autocomplete>
+
+      <button type="submit" class="btn btn--secondary btn--inline">
+        Take the Quiz
+      </button>
+
+    </v-form>
+
+
+  </div>
+
+
+  <div class="quiz__q" v-if="activePhase === 'quiz'">
     <div class="progress" v-if="progress <= 100">
       <div class="progress" style="border-color: #0c2340; background-color: #0c2340; margin: 0; color: white;"
         :style="{ width: progress + '%' }">
@@ -34,41 +62,12 @@
     </div>
   </div>
 
-  <div class="quiz__q" v-if="isInitialized === false && isQuizActive === true && hasResult === false">
-    <v-form v-model="isResponseValid" @submit.prevent="initialize()">
-      <v-text-field label="Name" v-model="name" :rules="[rules.empty()]"></v-text-field>
-      <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
-      <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]"
-        label="Student's Birthhdate"></v-date-input>
 
-
-      <v-radio-group v-model="quizMode" :rules="[rules.empty()]">
-        <v-radio value="certain" label="Yes, I’m certain!"></v-radio>
-        <v-radio value="explore" label="I think so, but I’m open to exploring."></v-radio>
-        <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
-      </v-radio-group>
-
-      <v-autocomplete :rules="[rules.empty()]" v-if="
-        isInitialized === false &&
-        isQuizActive === true &&
-        hasResult === false &&
-        (quizMode == 'certain' || quizMode == 'explore')" label="Select Major" v-model="selectedMajor"
-        item-title="Name" item-value="ID" :items="majorsMap"></v-autocomplete>
-
-      <button type="submit" class="btn btn--secondary btn--inline">
-        Take the Quiz
-      </button>
-
-    </v-form>
-
-
-  </div>
-
-  <div v-if="hasResult === true">
+  <div v-if="activePhase === 'resultGroup'">
     <Majors :title="outcome" :majors="[]"></Majors>
   </div>
 
-  <div class="quiz__q" v-if="(isInitialized && quizMode == 'certain')">
+  <div v-if="activePhase === 'resultMajor'" class="quiz__q">
 
   </div>
 </template>
@@ -82,25 +81,20 @@ import Majors from '@/components/Majors.vue';
 import rules from "@/assets/js/rules";
 
 
-const buckets = ref([
-  'Health',
-  'Business',
-  'Communication',
-  'Science',
-  'Education',
-  'Technology',
-  'Art',
-  'People'
+const phases = ref([
+  'intro',
+  'form',
+  'quiz',
+  'resultGroup',
+  'resultMajor',
 ]);
 
+
+const activePhase = ref("intro");
 const questionIndex = ref(-1);
 const userResponses = ref([]);
 const selectedMajor = ref("");
 const isResponseValid = ref(false);
-
-const isInitialized = ref(false);
-const isQuizActive = ref(false);
-const hasResult = ref(false);
 
 const name = ref("");
 const email = ref("");
@@ -122,19 +116,23 @@ onBeforeMount(async () => {
 
 function start() {
   questionIndex.value = 0;
-  isQuizActive.value = true;
+  activePhase.value = "form"
 }
 
 async function initialize() {
 
-  console.log(isResponseValid.value);
 
   if (isResponseValid.value) {
 
     let sendData = { name: name.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
 
     await quizStore.setInstance(sendData);
-    isInitialized.value = true;
+
+    if(quizMode.value == "certain"){
+      activePhase.value = "resultMajor"
+    }else{
+      activePhase.value = "quiz"
+    }
   }
 
 }
@@ -149,7 +147,7 @@ function prev() {
 
 async function score() {
   await quizStore.postResults(userResponses.value);
-  hasResult.value = true;
+  activePhase.value = "resultGroup";
 }
 
 const progress = computed(() => {
