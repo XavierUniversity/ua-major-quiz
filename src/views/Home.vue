@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz__content" v-if="isQuizActive == false && isInitialized == false && hasResult == false">
+  <div class="quiz__content" v-if="!isQuizActive && !isInitialized && !hasResult">
     <h2 class="quiz__content">Find Your Major</h2>
     <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
@@ -63,11 +63,11 @@
     </button>
   </div>
 
-  <div v-if="hasResult === true">
+  <div class="quiz__q" v-if="hasResult === true">
     <Majors :title="outcome" :majors="[]"></Majors>
   </div>
 
-  <div v-if="(isInitialized && quizMode == 'certain')">
+  <div class="quiz__q" v-if="(isInitialized && quizMode == 'certain')">
 
   </div>
 </template>
