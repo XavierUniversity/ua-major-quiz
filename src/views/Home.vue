@@ -6,7 +6,7 @@
       Take the Quiz
     </button>
   </div>
-  <div class="quiz__q" v-if="isQuizActive && isInitialized && !hasResult">
+  <div class="quiz__q" v-if="isQuizActive && isInitialized && !hasResult && quizMode !== 'certain'">
     <div class="progress" v-if="progress <= 100">
       <div class="progress" style="border-color: #0c2340; background-color: #0c2340; margin: 0; color: white;"
         :style="{ width: progress + '%' }">
@@ -42,12 +42,21 @@
 
 
       <v-radio-group v-model="quizMode">
-        <v-radio value="certain" label="Yes, I’m certain!" ></v-radio>
+        <v-radio value="certain" label="Yes, I’m certain!"></v-radio>
         <v-radio value="explore" label="I think so, but I’m open to exploring."></v-radio>
         <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
       </v-radio-group>
 
+
+      <v-autocomplete v-if="
+        isInitialized === false &&
+        isQuizActive === true &&
+        hasResult === false &&
+        (quizMode == 'certain' || quizMode == 'explore')" label="Select Major" v-model="selectedMajor"
+        item-title="Name" item-value="ID" :items="majorsMap"></v-autocomplete>
+
     </v-form>
+
 
     <button v-on:click="initialize" class="btn btn--secondary btn--inline">
       Take the Quiz
@@ -56,6 +65,10 @@
 
   <div v-if="hasResult === true">
     <Majors :title="outcome" :majors="[]"></Majors>
+  </div>
+
+  <div v-if="(isInitialized && quizMode == 'certain')">
+
   </div>
 </template>
 
@@ -79,6 +92,7 @@ const buckets = ref([
 
 const questionIndex = ref(-1);
 const userResponses = ref([]);
+const selectedMajor = ref("");
 
 const isInitialized = ref(false);
 const isQuizActive = ref(false);
@@ -87,13 +101,13 @@ const hasResult = ref(false);
 const name = ref("");
 const email = ref("");
 const birthdate = ref("");
-const quizMode= ref("intro");
+const quizMode = ref("intro");
 
 
 
 const quizStore = useQuizStore();
 
-const { questionMap, outcome, majorMap } = storeToRefs(quizStore);
+const { questionMap, outcome, majorsMap } = storeToRefs(quizStore);
 
 
 onBeforeMount(async () => {
