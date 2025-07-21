@@ -40,5 +40,10 @@ export const useQuizStore = defineStore("QuizStore", {
       let res = await api.getMajors();
       this._majorsMap = res.data;
     },
+    async updateInstance(answers){
+        let res = await api.getMajors();
+        this._majorsMap = res.data;
+    }
+    
   },
 });

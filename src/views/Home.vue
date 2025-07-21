@@ -35,35 +35,36 @@
   </div>
 
   <div class="quiz__q" v-if="isInitialized === false && isQuizActive === true && hasResult === false">
-    <v-form>
-      <v-text-field label="Name" v-model="name"></v-text-field>
-      <v-text-field label="Email" v-model="email"></v-text-field>
-      <v-date-input v-model="birthdate" validate-on-blur label="Student's Birthhdate"></v-date-input>
+    <v-form v-model="isResponseValid" @submit.prevent="initialize()">
+      <v-text-field label="Name" v-model="name" :rules="[rules.empty()]"></v-text-field>
+      <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
+      <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]"
+        label="Student's Birthhdate"></v-date-input>
 
 
-      <v-radio-group v-model="quizMode">
+      <v-radio-group v-model="quizMode" :rules="[rules.empty()]">
         <v-radio value="certain" label="Yes, I’m certain!"></v-radio>
         <v-radio value="explore" label="I think so, but I’m open to exploring."></v-radio>
         <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
       </v-radio-group>
 
-
-      <v-autocomplete v-if="
+      <v-autocomplete :rules="[rules.empty()]" v-if="
         isInitialized === false &&
         isQuizActive === true &&
         hasResult === false &&
         (quizMode == 'certain' || quizMode == 'explore')" label="Select Major" v-model="selectedMajor"
         item-title="Name" item-value="ID" :items="majorsMap"></v-autocomplete>
 
+      <button type="submit" class="btn btn--secondary btn--inline">
+        Take the Quiz
+      </button>
+
     </v-form>
 
 
-    <button v-on:click="initialize" class="btn btn--secondary btn--inline">
-      Take the Quiz
-    </button>
   </div>
 
-  <div class="quiz__q" v-if="hasResult === true">
+  <div v-if="hasResult === true">
     <Majors :title="outcome" :majors="[]"></Majors>
   </div>
 
@@ -77,6 +78,8 @@ import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref, reactive, computed } from "vue";
 import Majors from '@/components/Majors.vue';
+
+import rules from "@/assets/js/rules";
 
 
 const buckets = ref([
@@ -93,6 +96,7 @@ const buckets = ref([
 const questionIndex = ref(-1);
 const userResponses = ref([]);
 const selectedMajor = ref("");
+const isResponseValid = ref(false);
 
 const isInitialized = ref(false);
 const isQuizActive = ref(false);
@@ -123,10 +127,16 @@ function start() {
 
 async function initialize() {
 
-  let sendData = { name: name.value, email: email.value, birthdate: birthdate.value };
+  console.log(isResponseValid.value);
 
-  await quizStore.setInstance(sendData);
-  isInitialized.value = true;
+  if (isResponseValid.value) {
+
+    let sendData = { name: name.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
+
+    await quizStore.setInstance(sendData);
+    isInitialized.value = true;
+  }
+
 }
 
 function next() {
