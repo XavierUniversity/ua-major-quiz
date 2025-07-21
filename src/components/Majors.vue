@@ -3,38 +3,53 @@
     <p>Based on your answers, we recommend&hellip;</p>
     <h2>{{ title }}</h2>
     <div class="select-box cta-card__2x1">
-      <div class="select-box__container" v-for="major in majors" :key="major.major">
+      <div class="select-box__container" v-for="major in majors" :key="major.MajorID">
         <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 8 99" preserveAspectRatio="xMidYMid slice"
           style="position:absolute;width:8px;height:100%;" version="1.1" viewBox="0 0 8 99" x="0px" xml:space="preserve"
           y="0px">
           <rect fill="#007DB3" height="33" width="8" y="33"></rect>
         </svg>
         <div class="select-box__container--content">
-          <h3><a class="select-box__link" :href="'https://www.xavier.edu' + major.link">{{ major.major }}</a></h3>
+          <h3><a class="select-box__link" :href="'https://www.xavier.edu' + major.link">{{ major.name }}</a></h3>
           <p v-if="major.description">{{ major.description }} </p>
         </div>
       </div>
     </div>
     <div class="text--center" style="text-align: center;">
-      <v-button to="/" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz &raquo;</v-button>
+      <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz &raquo;</button>
     </div>
     <Disclaimer />
   </div>
 </template>
 
-<script>
-import Disclaimer from '@/components/Disclaimer.vue'
-export default {
-  name: 'Majors',
-  components: {
-    Disclaimer,
-  },
-  props: {
-    title: String,
-    description: String,
-    majors: Array
-  }
+<script setup>
+
+import Disclaimer from '@/components/Disclaimer.vue';
+
+
+import { defineProps, defineEmits } from "vue";
+
+
+const { title, description, majors } = defineProps({
+  title: String,
+  description: String,
+  majors: Array
+})
+
+
+
+
+const emit = defineEmits(["restart"]);
+
+
+
+function restart(){
+    // got to quiz phase
+
+    emit("restart");
 }
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

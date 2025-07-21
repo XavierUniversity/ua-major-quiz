@@ -2,13 +2,12 @@ import { defineStore } from "pinia";
 
 import api from "@/api";
 
-import { useSessionStorage } from "@vueuse/core";
-
 const defaultState = {
   _questionMap: {},
   _instanceID: "",
   _outcome: "",
   _majorsMap: {},
+  _outcomeMajors: []
 };
 export const useQuizStore = defineStore("QuizStore", {
   state: () => {
@@ -19,6 +18,7 @@ export const useQuizStore = defineStore("QuizStore", {
     instanceID: (state) => state._instanceID,
     outcome: (state) => state._outcome,
     majorsMap: (state) => state._majorsMap,
+    outcomeMajors: (state) => state._outcomeMajors
   },
   actions: {
     async fetchQuestions() {
@@ -40,10 +40,15 @@ export const useQuizStore = defineStore("QuizStore", {
       let res = await api.getMajors();
       this._majorsMap = res.data;
     },
-    async updateInstance(answers){
-        let res = await api.getMajors();
-        this._majorsMap = res.data;
+    async updateInstance(answers) {
+      let res = await api.getMajors();
+      this._majorsMap = res.data;
+    },
+    async getOutcomeDetails(outcomeID){
+      let res = await api.getOutcomeDetails(outcomeID);
+      this._outcomeMajors = res.data["majors"];
+
     }
-    
+
   },
 });

@@ -64,7 +64,7 @@
 
 
   <div v-if="activePhase === 'resultGroup'">
-    <Majors :title="outcome" :majors="[]"></Majors>
+    <Majors :title="outcome.name" :majors="outcomeMajors"></Majors>
   </div>
 
   <div v-if="activePhase === 'resultMajor'" class="quiz__q">
@@ -75,7 +75,8 @@
 <script setup>
 import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
-import { onBeforeMount, ref, reactive, computed } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
+
 import Majors from '@/components/Majors.vue';
 
 import rules from "@/assets/js/rules";
@@ -105,8 +106,7 @@ const quizMode = ref("intro");
 
 const quizStore = useQuizStore();
 
-const { questionMap, outcome, majorsMap } = storeToRefs(quizStore);
-
+const { questionMap, outcome, majorsMap,outcomeMajors } = storeToRefs(quizStore);
 
 onBeforeMount(async () => {
   await quizStore.fetchQuestions();
@@ -147,6 +147,7 @@ function prev() {
 
 async function score() {
   await quizStore.postResults(userResponses.value);
+  await quizStore.getOutcomeDetails(outcome.value.ID);
   activePhase.value = "resultGroup";
 }
 

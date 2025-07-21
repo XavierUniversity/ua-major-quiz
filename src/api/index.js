@@ -14,12 +14,18 @@ export default {
       ...sendData,
     });
   },
-  postInstanceMajor(sendData){
-    return  apiClient.post("/major_quiz/set_instance_major",{
-      ...sendData
-    })
+  postInstanceMajor(sendData) {
+    return apiClient.post("/major_quiz/set_instance_major", {
+      ...sendData,
+    });
   },
-  getMajors(){
+  getMajors() {
     return apiClient.get("/major_quiz/get_major_list");
-  }
+  },
+  getOutcomeDetails(outcomeID) {
+    console.log(outcomeID)
+    return apiClient.post("/major_quiz/get_outcome_details", {
+      outcomeID
+    });
+  },
 };
