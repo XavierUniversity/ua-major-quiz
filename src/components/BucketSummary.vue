@@ -90,7 +90,7 @@ p {
     &:hover,
     &:focus,
     &:active {
-      color: #09c;
+      color: #1a1aff;
     }
   }
 
