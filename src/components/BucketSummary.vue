@@ -1,5 +1,5 @@
 <template>
-  <div class="quiz__q">
+  <div>
     <p>Based on your answers, we recommend&hellip;</p>
     <h2>{{ title }}</h2>
     <div class="select-box cta-card__2x1">
@@ -43,10 +43,10 @@ const emit = defineEmits(["restart"]);
 
 
 
-function restart(){
-    // got to quiz phase
+function restart() {
+  // got to quiz phase
 
-    emit("restart");
+  emit("restart");
 }
 
 

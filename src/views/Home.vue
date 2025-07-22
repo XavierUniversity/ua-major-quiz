@@ -9,7 +9,9 @@
 
   <div class="quiz__q" v-if="activePhase === 'form'">
     <v-form v-model="isResponseValid" @submit.prevent="initialize()">
-      <v-text-field label="Name" v-model="name" :rules="[rules.empty()]"></v-text-field>
+      <v-text-field label="First Name" v-model="firstName" :rules="[rules.empty()]"></v-text-field>
+      <v-text-field label="Last Name" v-model="lastName" :rules="[rules.empty()]"></v-text-field>
+
       <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
       <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]"
         label="Student's Birthhdate"></v-date-input>
@@ -64,11 +66,13 @@
   </div>
 
 
-  <div v-if="activePhase === 'resultGroup'">
+  <div class="quiz__q" v-if="activePhase === 'resultGroup'">
+    <ReportLoader :mode="quizMode"> </ReportLoader>
     <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
   </div>
 
-  <div v-if="activePhase === 'resultMajor'" class="quiz__q">
+  <div  v-if="activePhase === 'resultMajor'" class="quiz__q">
+    <ReportLoader :mode="quizMode"> </ReportLoader>
     {{ majorsMap[selectedMajor] }}
   </div>
 </template>
@@ -98,7 +102,9 @@ const userResponses = ref([]);
 const selectedMajor = ref("");
 const isResponseValid = ref(false);
 
-const name = ref("");
+const firstName = ref("");
+const lastName = ref("");
+
 const email = ref("");
 const birthdate = ref("");
 const quizMode = ref("intro");
@@ -131,7 +137,7 @@ async function initialize() {
 
   if (isResponseValid.value) {
 
-    let sendData = { name: name.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
+    let sendData = { name: firstName.value + ' ' + lastName.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
 
     await quizStore.setInstance(sendData);
 
