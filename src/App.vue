@@ -12,7 +12,7 @@ import Home from '@/views/Home.vue';
 <style lang="scss">
 .quiz {
   background-color: #0C2340;
-  background-image: url('~@/assets/quiz-background.webp');
+  background-image: url('@/assets/quiz-background.webp');
   background-size: cover;
   text-align: center;
   padding: 5.5rem 0.5rem;

@@ -21,11 +21,12 @@
         <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
       </v-radio-group>
 
-      <v-autocomplete :rules="[rules.empty()]" v-if="(quizMode == 'certain' || quizMode == 'explore')" label="Select Major" v-model="selectedMajor"
-        item-title="Name" item-value="ID" :items="majorsMap"></v-autocomplete>
+      <v-autocomplete :rules="[rules.empty()]" v-if="(quizMode == 'certain' || quizMode == 'explore')"
+        label="Select Major" v-model="selectedMajor" item-title="Name" item-value="ID"
+        :items="majorsMap"></v-autocomplete>
 
       <button type="submit" class="btn btn--secondary btn--inline">
-        Take the Quiz
+        {{ quizMode !== 'certain' ? 'Take the Quiz' : 'Generate Major Report' }}
       </button>
 
     </v-form>
@@ -64,11 +65,11 @@
 
 
   <div v-if="activePhase === 'resultGroup'">
-    <Majors :title="outcome.name" :majors="outcomeMajors"></Majors>
+    <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
   </div>
 
   <div v-if="activePhase === 'resultMajor'" class="quiz__q">
-
+    {{ majorsMap[selectedMajor] }}
   </div>
 </template>
 
@@ -77,7 +78,7 @@ import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref, computed } from "vue";
 
-import Majors from '@/components/Majors.vue';
+import BucketSummary from '@/components/BucketSummary.vue';
 
 import rules from "@/assets/js/rules";
 
@@ -106,7 +107,7 @@ const quizMode = ref("intro");
 
 const quizStore = useQuizStore();
 
-const { questionMap, outcome, majorsMap,outcomeMajors } = storeToRefs(quizStore);
+const { questionMap, outcome, majorsMap, outcomeMajors } = storeToRefs(quizStore);
 
 onBeforeMount(async () => {
   await quizStore.fetchQuestions();
@@ -119,6 +120,12 @@ function start() {
   activePhase.value = "form"
 }
 
+function restartQuiz() {
+  questionIndex.value = 0;
+  userResponses.value = [];
+  activePhase.value = "quiz"
+}
+
 async function initialize() {
 
 
@@ -128,9 +135,9 @@ async function initialize() {
 
     await quizStore.setInstance(sendData);
 
-    if(quizMode.value == "certain"){
+    if (quizMode.value == "certain") {
       activePhase.value = "resultMajor"
-    }else{
+    } else {
       activePhase.value = "quiz"
     }
   }
@@ -166,13 +173,13 @@ const progress = computed(() => {
 
 .btn {
   &--secondary {
-    background: #007DB3;
+    background: #1a1aff;
     color: white;
 
     &:hover,
     &:focus,
     &:active {
-      background: darken(#007DB3, 10%);
+      background: darken(#1a1aff, 10%);
     }
   }
 
