@@ -66,23 +66,17 @@
   </div>
 
 
-  <div class="quiz__q" v-if="activePhase === 'resultGroup'">
+  <div class="quiz__q" v-if="activePhase === 'result'">
     <ReportLoader :mode="quizMode"> </ReportLoader>
-    <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
   </div>
 
-  <div  v-if="activePhase === 'resultMajor'" class="quiz__q">
-    <ReportLoader :mode="quizMode"> </ReportLoader>
-    {{ majorsMap[selectedMajor] }}
-  </div>
 </template>
 
 <script setup>
 import { useQuizStore } from "@/store/QuizStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount, ref, computed } from "vue";
-
-import BucketSummary from '@/components/BucketSummary.vue';
+import ReportLoader from "@/components/ReportLoader.vue";
 
 import rules from "@/assets/js/rules";
 
@@ -91,8 +85,7 @@ const phases = ref([
   'intro',
   'form',
   'quiz',
-  'resultGroup',
-  'resultMajor',
+  'result',
 ]);
 
 
@@ -137,12 +130,12 @@ async function initialize() {
 
   if (isResponseValid.value) {
 
-    let sendData = { name: firstName.value + ' ' + lastName.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
+    let sendData = { firstName: firstName.value, lastName: lastName.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
 
     await quizStore.setInstance(sendData);
 
     if (quizMode.value == "certain") {
-      activePhase.value = "resultMajor"
+      activePhase.value = "result"
     } else {
       activePhase.value = "quiz"
     }
@@ -161,7 +154,7 @@ function prev() {
 async function score() {
   await quizStore.postResults(userResponses.value);
   await quizStore.getOutcomeDetails(outcome.value.ID);
-  activePhase.value = "resultGroup";
+  activePhase.value = "result";
 }
 
 const progress = computed(() => {

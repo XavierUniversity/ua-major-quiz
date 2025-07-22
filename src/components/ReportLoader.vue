@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <v-skeleton-loader></v-skeleton-loader>
         <v-skeleton-loader></v-skeleton-loader>
         <v-skeleton-loader></v-skeleton-loader>
@@ -9,6 +8,11 @@
 
 
         <p v-if="mode === 'certain'">
+            Here’s How to Make the Most of Knowing Your Major When Applying to College
+            You told us your intended major is: MAJOR
+
+            <MajorSummary :selectedMajor="selectedMajor"></MajorSummary>
+
             If you’re heading into the college search with a major already in mind—great! That kind of
             focus can help you streamline your choices and find programs that match your goals. But
             knowing what you want to study is just the beginning.
@@ -52,10 +56,14 @@
             begin looking at colleges with a purpose, while still leaving room to grow and discover new
             interests.
             You’ve shown interest in MAJOR, and that’s a great place to start.
-            MAJOR INFORMATION
+
+            <MajorSummary :selectedMajor="selectedMajor"></MajorSummary>
+
             We also think these would be great majors for you to explore as you continue your college
             search.
-            QUIZ FEEDBACK
+
+            <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+
             Here are some additional tips to help you navigate the application process when you’ve
             mostly decided, but are still open to exploring:
             <strong>1. Start with What Interests You</strong>
@@ -86,7 +94,9 @@
             your academic journey and may influence your future career path. But while it’s important,
             it doesn’t have to be overwhelming.
             Based on your answers, we think these would be great majors for you to explore:
-            QUIZ RESULTS
+
+            <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+
             Here are some additional tips as you consider your options:
             Here are some additional tips as you consider your options:
             <strong>
@@ -102,7 +112,6 @@
         </ul>
         <strong>
             2. Explore Career Goals and Job Market Trends
-
         </strong>
         While you don’t need to have your entire future mapped out, it helps to consider where
         different majors might lead. Some fields—like nursing, computer science, or engineering—
@@ -116,7 +125,6 @@
         </ul>
         <strong>
             3. Understand the Flexibility of Your Choice
-
         </strong>
         Many students change their major at least once during college. Xavier makes it easy to
         switch between majors and encourages exploration!
@@ -137,7 +145,17 @@
 <script setup>
 
 import { defineProps } from 'vue';
+import BucketSummary from '@/components/BucketSummary.vue';
+import MajorSummary from '@/components/MajorSummary.vue';
 
+import { useQuizStore } from "@/store/QuizStore";
+
+import { storeToRefs } from 'pinia';
+
+
+const quizStore = useQuizStore();
+
+const { outcome, outcomeMajors, selectedMajor } = storeToRefs(quizStore);
 
 const { mode } = defineProps({ mode: { type: String, required: true } });
 
