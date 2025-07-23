@@ -9,7 +9,7 @@
                     <rect fill="#1a1aff" height="33" width="8" y="33"></rect>
                 </svg>
                 <div class="select-box__container--content">
-                    <h3><a class="select-box__link" :href="'https://www.xavier.edu' + selectedMajor.URL">{{
+                    <h3><a class="select-box__link" :href="selectedMajor.URL">{{
                         selectedMajor.Name
                             }}</a>
                     </h3>

@@ -10,24 +10,19 @@
           <rect fill="#1a1aff" height="33" width="8" y="33"></rect>
         </svg>
         <div class="select-box__container--content">
-          <h3><a class="select-box__link" :href="'https://www.xavier.edu' + major.link">{{ major.name }}</a></h3>
+          <h3><a class="select-box__link" :href="major.link">{{ major.name }}</a></h3>
           <p v-if="major.description">{{ major.description }} </p>
         </div>
       </div>
     </div>
-    <div class="text--center" style="text-align: center;">
-      <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz &raquo;</button>
-    </div>
-    <Disclaimer />
+   
   </div>
 </template>
 
 <script setup>
 
-import Disclaimer from '@/components/Disclaimer.vue';
 
-
-import { defineProps, defineEmits } from "vue";
+import { defineProps } from "vue";
 
 
 const { title, description, majors } = defineProps({
@@ -39,15 +34,7 @@ const { title, description, majors } = defineProps({
 
 
 
-const emit = defineEmits(["restart"]);
 
-
-
-function restart() {
-  // got to quiz phase
-
-  emit("restart");
-}
 
 
 </script>
