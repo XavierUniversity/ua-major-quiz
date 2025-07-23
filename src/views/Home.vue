@@ -23,10 +23,10 @@
         <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
       </v-radio-group>
 
-      {{ selectedMajor }}
+
       <v-autocomplete :rules="[rules.empty()]" v-if="(quizMode == 'certain' || quizMode == 'explore')"
-        label="Select Major" v-model="selectedMajor" item-title="Name" item-value="MajorID"
-        :items="majorsMap"></v-autocomplete>
+        label="Select Major" v-model="selectedMajor" item-title="Name" item-value="ID"
+        :items="filteredMajors"></v-autocomplete>
 
       <button type="submit" class="btn btn--secondary btn--inline">
         {{ quizMode !== 'certain' ? 'Take the Quiz' : 'Generate Major Report' }}
@@ -68,7 +68,7 @@
 
 
   <div class="quiz__q" v-if="activePhase === 'result'">
-    <ReportLoader :mode="quizMode"> </ReportLoader>
+    <ReportLoader @restart="restartQuiz()" :mode="quizMode"> </ReportLoader>
   </div>
 
 </template>
@@ -82,12 +82,22 @@ import ReportLoader from "@/components/ReportLoader.vue";
 import rules from "@/assets/js/rules";
 
 
-const phases = ref([
-  'intro',
-  'form',
-  'quiz',
-  'result',
-]);
+// PHASES
+//   'intro',
+//   'form',
+//   'quiz',
+//   'result',
+// 
+
+const filteredMajors = computed(()=>{
+  let final = [];
+  majorsMap.value.forEach((major,index) => {
+    let temp = {ID: index, Name: major.Name }
+    final.push(temp);
+  });
+  return final
+  
+})
 
 
 const activePhase = ref("intro");
@@ -107,7 +117,7 @@ const quizMode = ref("intro");
 
 const quizStore = useQuizStore();
 
-const { questionMap, outcome, majorsMap, outcomeMajors } = storeToRefs(quizStore);
+const { questionMap, outcome, majorsMap } = storeToRefs(quizStore);
 
 onBeforeMount(async () => {
   await quizStore.fetchQuestions();
@@ -163,6 +173,16 @@ async function score() {
 const progress = computed(() => {
   return ((questionIndex.value) / questionMap.value.length) * 100
 });
+
+const emit = defineEmits(["restart"]);
+
+
+
+function restart() {
+  // got to quiz phase
+
+  emit("restart");
+}
 
 </script>
 

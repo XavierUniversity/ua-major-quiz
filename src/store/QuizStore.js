@@ -8,7 +8,7 @@ const defaultState = {
   _outcome: "",
   _majorsMap: {},
   _outcomeMajors: [],
-  _selectedMajorID: [],
+  _selectedMajorID: 0,
 };
 export const useQuizStore = defineStore("QuizStore", {
   state: () => {

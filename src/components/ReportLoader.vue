@@ -97,7 +97,7 @@
                     your college
                     search.</p>
 
-                <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
 
                 <br />
                 <br />
@@ -150,6 +150,11 @@
                 </p>
             </div>
 
+            <div class="text--center" style="text-align: center;">
+                <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
+                    &raquo;</button>
+            </div>
+
         </div>
 
         <div v-if="mode === 'quiz'">
@@ -161,7 +166,7 @@
                     it doesn’t have to be overwhelming.
                     Based on your answers, we think these would be great majors for you to explore:</p>
 
-                <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
                 <br />
                 <br />
             </div>
@@ -227,6 +232,12 @@
                     also about discovering who you are and what kind of life you want to build.
                 </p>
             </div>
+            <div class="text--center" style="text-align: center;">
+                <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
+                    &raquo;</button>
+            </div>
+            <Disclaimer />
+
 
         </div>
 
@@ -234,7 +245,7 @@
 </template>
 
 <script setup>
-import { defineProps, onMounted, reactive, ref } from 'vue';
+import { defineProps, onMounted, reactive, ref, defineEmits } from 'vue';
 
 import BucketSummary from '@/components/BucketSummary.vue';
 import MajorSummary from '@/components/MajorSummary.vue';
@@ -273,6 +284,17 @@ const { outcome, outcomeMajors, selectedMajor } = storeToRefs(quizStore);
 const { mode } = defineProps({
     mode: { type: String, required: true }
 });
+
+const emit = defineEmits(["restart"]);
+
+
+
+function restart() {
+    // got to quiz phase
+
+    emit("restart");
+}
+
 
 </script>
 
