@@ -8,10 +8,9 @@
 
         <p v-if="mode === 'certain'">
             <span v-if="loaderCount > 1">
-                Here’s How to Make the Most of Knowing Your Major When Applying to College
-                You told us your intended major is: {{ selectedMajor }}
-
-                <MajorSummary :selectedMajor="selectedMajor"></MajorSummary>
+                <p>Here’s How to Make the Most of Knowing Your Major When Applying to College</p>
+                
+                <MajorSummary ></MajorSummary>
 
             </span>
 
@@ -75,7 +74,7 @@
                 interests.
                 You’ve shown interest in MAJOR, and that’s a great place to start.
 
-                <MajorSummary :selectedMajor="selectedMajor"></MajorSummary>
+                <MajorSummary></MajorSummary>
 
 
             </span>
@@ -235,10 +234,7 @@ const quizStore = useQuizStore();
 const { outcome, outcomeMajors, selectedMajor } = storeToRefs(quizStore);
 
 const { mode } = defineProps({
-    mode: { type: String, required: true },
-    selectedMajor: {
-        type: String, required: true
-    }
+    mode: { type: String, required: true }
 });
 
 </script>

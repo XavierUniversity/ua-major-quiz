@@ -23,8 +23,9 @@
         <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
       </v-radio-group>
 
+      {{ selectedMajor }}
       <v-autocomplete :rules="[rules.empty()]" v-if="(quizMode == 'certain' || quizMode == 'explore')"
-        label="Select Major" v-model="selectedMajor" item-title="Name" item-value="ID"
+        label="Select Major" v-model="selectedMajor" item-title="Name" item-value="MajorID"
         :items="majorsMap"></v-autocomplete>
 
       <button type="submit" class="btn btn--secondary btn--inline">
@@ -135,6 +136,8 @@ async function initialize() {
     await quizStore.setInstance(sendData);
 
     if (quizMode.value == "certain") {
+   
+      quizStore.setSelectedMajorID(selectedMajor.value);
       activePhase.value = "result"
     } else {
       activePhase.value = "quiz"
