@@ -1,7 +1,6 @@
 <template>
     <div>
-       
-        You told us your intended major is:
+
         <div class="select-box cta-card__1x1">
             <div class="select-box__container">
                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 8 99"
@@ -12,8 +11,10 @@
                 <div class="select-box__container--content">
                     <h3><a class="select-box__link" :href="'https://www.xavier.edu' + selectedMajor.URL">{{
                         selectedMajor.Name
-                    }}</a>
+                            }}</a>
                     </h3>
+
+
                     <p v-if="selectedMajor.Description">{{ selectedMajor.Description }} </p>
                 </div>
             </div>
