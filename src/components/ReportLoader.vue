@@ -14,8 +14,8 @@
 
                 <MajorSummary></MajorSummary>
 
-                <br/>
-                <br/>
+                <br />
+                <br />
 
             </div>
 
@@ -55,7 +55,7 @@
                 <h3>4. Communicate Your Passion in Your Application</h3>
 
                 <p>Knowing your major gives you a strong foundation for your application essays. Use your
-                    essay to share:</p>
+                    essay to share:
                 <ul>
                     <li>Why you chose your major</li>
                     <li>What experiences led you there</li>
@@ -64,6 +64,8 @@
                     </li>
 
                 </ul>
+                </p>
+
                 <p>
                     Being sure of your major is a great advantage—but stay curious and adaptable. College
                     may deepen your passion or shift your path slightly, and that’s okay. The more proactive
@@ -75,8 +77,9 @@
 
         <div v-if="mode === 'explore'">
             <div v-if="loaderCount > 1" class="loader-block">
-                <p>Thinking About a Major, But Still Exploring? Here’s How to Apply to College with
-                    Confidence
+                <h2>Thinking About a Major, But Still Exploring? Here’s How to Apply to College with
+                    Confidence</h2>
+                <p>
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can
                     begin looking at colleges with a purpose, while still leaving room to grow and discover new
                     interests.
@@ -96,6 +99,8 @@
 
                 <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
 
+                <br />
+                <br />
             </div>
 
 
@@ -149,14 +154,16 @@
 
         <div v-if="mode === 'quiz'">
             <div v-if="loaderCount > 1" class="loader-block">
-                <p>Selecting a College Major: What to Consider Before You Apply
+                <h2>Selecting a College Major: What to Consider Before You Apply</h2>
+                <p>
                     Choosing a college major can feel like a high-stakes decision—after all, it often shapes
                     your academic journey and may influence your future career path. But while it’s important,
                     it doesn’t have to be overwhelming.
                     Based on your answers, we think these would be great majors for you to explore:</p>
 
                 <BucketSummary @restart="restartQuiz()" :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
-
+                <br />
+                <br />
             </div>
 
 
@@ -169,12 +176,13 @@
                     Think about the subjects you enjoy and excel in. Your natural interests and talents can be
                     good indicators of where you might thrive academically and professionally.
                     Ask yourself:
-                </p>
                 <ul>
                     <li>What subjects do I look forward to?</li>
                     <li>What kinds of tasks make me lose track of time?</li>
                     <li> Have teachers or mentors praised me for certain skills? </li>
                 </ul>
+                </p>
+
             </div>
 
             <div v-if="loaderCount > 3" class="loader-block">
@@ -187,12 +195,13 @@
                     have more defined career paths, while others—like philosophy or history—offer broader
                     options in fields like law, education, or business.
                     Things to research:
-                </p>
                 <ul>
                     <li> What kinds of jobs do graduates in this major typically get?</li>
                     <li>What is the job outlook and salary range in that field?</li>
                     <li>Does the major require advanced degrees to be competitive?</li>
                 </ul>
+                </p>
+
             </div>
 
             <div v-if="loaderCount > 4" class="loader-block">
