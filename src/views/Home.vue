@@ -59,11 +59,10 @@
       <div v-if="index === questionIndex">
         <h2 class="question">{{ question.Question }}</h2>
         <v-radio-group v-model="userResponses[question.QuestionID]">
-          <v-card class="radio-card" elevation3>
 
-            <v-radio  v-for="(answer, index) in question.Answers"  class="radio-card" :value="answer.ID" :label="answer.Text"></v-radio>
+          <v-radio class="radio-card" v-for="(answer, index) in question.Answers" :value="answer.ID"
+            :label="answer.Text"></v-radio>
 
-          </v-card>
         </v-radio-group>
 
         <hr />
@@ -270,43 +269,20 @@ h2.question {
   }
 }
 
+
 .radio-card {
-  text-align: left;
-  list-style-type: none;
-  padding: 0;
-  margin: 1rem 0 0;
-
-  li {
-    margin: 0;
-    padding: 0;
+  :deep(.v-label) {
+    width: 100% !important;
   }
 
-  label {
-    display: block;
-    background: #fff;
-    padding: 1.5rem 2rem;
-    margin: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.5rem rgba(black, 0.25);
-    transition: background 250ms ease;
-
-    &:hover,
-    &:focus {
-      background: darken(white, 5%);
-    }
+  &:hover,
+  &:focus {
+    background: darken(white, 5%);
   }
+
 }
 
 input[type='radio'] {
   margin-right: 0.75rem;
 }
-
-// .radio-card {
-//   margin-bottom: 10px;
-
-//   &:hover,
-//   &:focus {
-//     background: darken(white, 5%);
-//   }
-// }
 </style>
