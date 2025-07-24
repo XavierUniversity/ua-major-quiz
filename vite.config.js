@@ -8,15 +8,14 @@ export default defineConfig({
   server: {
     allowedHosts: ["xavier-one.lndo.site"],
   },
-  plugins: [
-    vue({
-      template: { transformAssetUrls },
-    }),
-    Vuetify({
-      autoImport: true,
-      styles: { configFile: "./src/styles/vuetifySettings.scss" },
-    }),
-  ],
+plugins:[  vue({
+    template: { transformAssetUrls },
+  }),
+  Vuetify({
+    autoImport: true,
+    styles: { configFile: "./src/styles/vuetifySettings.scss" },
+  }),],
+  base: "/major-quiz/test",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

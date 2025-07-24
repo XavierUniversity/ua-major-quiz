@@ -1,16 +1,20 @@
 <template>
     <div>
-        <div>
-
-            <v-skeleton-loader v-if="isLoading" type="card"></v-skeleton-loader>
+        <div id="typewriter">
 
         </div>
+        <v-skeleton-loader v-if="isLoading" type="card"></v-skeleton-loader>
 
-        <div v-if="mode === 'certain'">
-            <div class="loader-block" v-if="loaderCount > 1">
+        <div v-if="!isLoading && mode !== 'certain'" class="text--center" style="text-align: center;">
+            <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
+                &raquo;</button>
+        </div>
+
+
+        <div id="active-text" v-if="mode === 'certain'" style="display:none;">
+            <div class="loader-block">
                 <h2>Here’s How to Make the Most of Knowing Your Major When Applying to College </h2>
-                <p>You told us your intended major is: <strong>{{ selectedMajor.Name }}</strong></p>
-
+                <h3>You told us your intended major is: <strong>{{ selectedMajor.Name }}</strong></h3>
 
                 <MajorSummary></MajorSummary>
 
@@ -19,8 +23,7 @@
 
             </div>
 
-
-            <div class="loader-block" v-if="loaderCount > 2">
+            <div class="loader-block">
 
                 <p>If you’re heading into the college search with a major already in mind—great! That kind of
                     focus can help you streamline your choices and find programs that match your goals. But
@@ -34,7 +37,7 @@
                     internships. Dig into the specifics.</p>
             </div>
 
-            <div class="loader-block" v-if="loaderCount > 3">
+            <div class="loader-block">
                 <h3> 2. Check for Admission Requirements</h3>
 
                 <p>Some majors—especially in areas like engineering, nursing, business, or performing arts—
@@ -42,7 +45,7 @@
                     GPA thresholds, prerequisite courses, portfolios, or auditions.</p>
             </div>
 
-            <div class="loader-block" v-if="loaderCount > 4">
+            <div class="loader-block">
                 <h3> 3. Explore Related Opportunities Early</h3>
 
 
@@ -51,7 +54,7 @@
                     plan for future grad school.</p>
             </div>
 
-            <div class="loader-block" v-if="loaderCount > 5">
+            <div class="loader-block">
                 <h3>4. Communicate Your Passion in Your Application</h3>
 
                 <p>Knowing your major gives you a strong foundation for your application essays. Use your
@@ -62,7 +65,6 @@
                     <li>
                         What you hope to do with your degree
                     </li>
-
                 </ul>
                 </p>
 
@@ -75,24 +77,24 @@
 
         </div>
 
-        <div v-if="mode === 'explore'">
-            <div v-if="loaderCount > 1" class="loader-block">
+        <div id="active-text" v-if="mode === 'explore'" style="display:none;">
+            <div class="loader-block">
                 <h2>Thinking About a Major, But Still Exploring? Here’s How to Apply to College with
                     Confidence</h2>
                 <p>
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can
                     begin looking at colleges with a purpose, while still leaving room to grow and discover new
                     interests.
-                    You’ve shown interest in <strong>{{ selectedMajor.Name }}</strong>, and that’s a great place to
-                    start.
                 </p>
+
+                <h3>You’ve shown interest in <strong>{{ selectedMajor.Name }}</strong>, and that’s a great place to
+                    start.</h3>
 
                 <MajorSummary></MajorSummary>
 
             </div>
 
-
-            <div v-if="loaderCount > 2" class="loader-block">
+            <div class="loader-block">
                 <p>We also think these would be great majors for you to explore as you continue
                     your college
                     search.</p>
@@ -105,7 +107,7 @@
 
 
 
-            <div v-if="loaderCount > 3">
+            <div>
                 <p>
                     Here are some additional tips to help you navigate the application process when you’ve
                     mostly decided, but are still open to exploring:
@@ -118,7 +120,7 @@
                 </p>
             </div>
 
-            <div v-if="loaderCount > 4" class="loader-block">
+            <div class="loader-block">
                 <h3>2. Explore Schools, Like Xavier, That Support Exploratory Students</h3>
                 <p>
                     It’s completely normal not to know what you want to major in when applying. Xavier offers
@@ -127,7 +129,7 @@
                 </p>
             </div>
 
-            <div v-if="loaderCount > 5" class="loader-block">
+            <div class="loader-block">
                 <h3>3. Talk to People Who’ve Been There</h3>
                 <p>
                     Reach out to current college students or alumni in your potential major. Ask how they
@@ -138,7 +140,7 @@
             </div>
 
 
-            <div v-if="loaderCount > 6" class="loader-block">
+            <div class="loader-block">
                 <h3>4. Use Your Application to Show Curiosity and Openness</h3>
                 <p>
                     You don’t have to pretend to be 100% certain in your essays. In fact, colleges appreciate
@@ -150,15 +152,12 @@
                 </p>
             </div>
 
-            <div class="text--center" style="text-align: center;">
-                <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
-                    &raquo;</button>
-            </div>
+
 
         </div>
 
-        <div v-if="mode === 'quiz'">
-            <div v-if="loaderCount > 1" class="loader-block">
+        <div id="active-text" v-if="mode === 'quiz'" style="display:none;">
+            <div class="loader-block">
                 <h2>Selecting a College Major: What to Consider Before You Apply</h2>
                 <p>
                     Choosing a college major can feel like a high-stakes decision—after all, it often shapes
@@ -172,7 +171,7 @@
             </div>
 
 
-            <div v-if="loaderCount > 2" class="loader-block">
+            <div class="loader-block">
                 <p>Here are some additional tips as you consider your options:</p>
                 <h3>
                     1. Start with Your Interests and Strengths
@@ -190,7 +189,7 @@
 
             </div>
 
-            <div v-if="loaderCount > 3" class="loader-block">
+            <div class="loader-block">
                 <h3>
                     2. Explore Career Goals and Job Market Trends
                 </h3>
@@ -209,7 +208,7 @@
 
             </div>
 
-            <div v-if="loaderCount > 4" class="loader-block">
+            <div class="loader-block">
                 <h3>
                     3. Understand the Flexibility of Your Choice
                 </h3>
@@ -219,7 +218,7 @@
                 </p>
             </div>
 
-            <div v-if="loaderCount > 5" class="loader-block">
+            <div class="loader-block">
                 <h3>
                     4. Don’t Panic if You’re Undecided
                 </h3>
@@ -232,11 +231,6 @@
                     also about discovering who you are and what kind of life you want to build.
                 </p>
             </div>
-            <div class="text--center" style="text-align: center;">
-                <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
-                    &raquo;</button>
-            </div>
-            <Disclaimer />
 
 
         </div>
@@ -245,7 +239,7 @@
 </template>
 
 <script setup>
-import { defineProps, onMounted, reactive, ref, defineEmits } from 'vue';
+import { defineProps, onMounted, ref, defineEmits } from 'vue';
 
 import BucketSummary from '@/components/BucketSummary.vue';
 import MajorSummary from '@/components/MajorSummary.vue';
@@ -253,29 +247,58 @@ import MajorSummary from '@/components/MajorSummary.vue';
 import { useQuizStore } from "@/store/QuizStore";
 
 import { storeToRefs } from 'pinia';
-import { useIntervalFn } from "@vueuse/core";
-
-const loaderCount = ref(0);
+import { useTimeoutFn } from "@vueuse/core";
 
 const isLoading = ref(false);
 
-const loadStatusMap = ref(new Array(8));
-
 onMounted(() => {
-    loadStatusMap.value.fill(true)
 
-    loaderCount.value = 0;
     isLoading.value = true;
-    const { pause } = useIntervalFn(() => {
-        loaderCount.value = loaderCount.value += 1;
-        loadStatusMap[loaderCount.value] = false;
-        if (loaderCount.value > 7) {
-            isLoading.value = false;
-            pause();
+    const htmlString = document.getElementById("active-text").innerHTML;
+    const typewriterContainer = document.getElementById("typewriter");
+
+    let i = 0;
+    let isTag = false;
+    let text = "";
+    let count = 0;
+    let chunkSize= 5;
+
+    function aiType() {
+        if (i + chunkSize < htmlString.length) {
+            i = i + chunkSize;
+        } else {
+            i = htmlString.length;
         }
-    }, 500);
+
+        count++;
+
+        if(count == 100){
+            chunkSize += 10;
+        }
+
+        text = htmlString.slice(0, i);
+        typewriterContainer.innerHTML = text;
+
+        const char = htmlString.charAt(i - 1);
+        if (char === "<") isTag = true;
+        if (char === ">") isTag = false;
+
+        if (i < htmlString.length) {
+            setTimeout(aiType, isTag ? 0 : 1);
+        } else {
+            isLoading.value = false;
+        }
+    };
+
+
+    aiType();
+
+
 
 })
+
+
+
 
 const quizStore = useQuizStore();
 

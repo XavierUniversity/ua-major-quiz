@@ -8,15 +8,26 @@
   </div>
 
   <div class="quiz__q" v-if="activePhase === 'form'">
+    <h2>Find Your Major</h2>
+
     <v-form v-model="isResponseValid" @submit.prevent="initialize()">
       <v-text-field label="First Name" v-model="firstName" :rules="[rules.empty()]"></v-text-field>
       <v-text-field label="Last Name" v-model="lastName" :rules="[rules.empty()]"></v-text-field>
 
       <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
-      <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]"
-        label="Student's Birthhdate"></v-date-input>
+      <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]" label="Birthdate"></v-date-input>
 
 
+      <h3>What year will you graduate high school?</h3>
+      <v-radio-group v-model="gradYear" :rules="[rules.empty()]">
+        <v-radio value="2026" label="2026"></v-radio>
+        <v-radio value="2027" label="2027"></v-radio>
+        <v-radio value="2028" label="2028"></v-radio>
+        <v-radio value="2029" label="2029"></v-radio>
+      </v-radio-group>
+
+
+      <h3>Do you know what Major you want to study?</h3>
       <v-radio-group v-model="quizMode" :rules="[rules.empty()]">
         <v-radio value="certain" label="Yes, I’m certain!"></v-radio>
         <v-radio value="explore" label="I think so, but I’m open to exploring."></v-radio>
@@ -48,7 +59,10 @@
       <div v-if="index === questionIndex">
         <h2 class="question">{{ question.Question }}</h2>
         <v-radio-group v-model="userResponses[question.QuestionID]">
-          <v-radio v-for="(answer, index) in question.Answers" :value="answer.ID" :label="answer.Text"></v-radio>
+
+          <v-radio class="radio-card" v-for="(answer, index) in question.Answers" :value="answer.ID"
+            :label="answer.Text"></v-radio>
+
         </v-radio-group>
 
         <hr />
@@ -89,14 +103,14 @@ import rules from "@/assets/js/rules";
 //   'result',
 // 
 
-const filteredMajors = computed(()=>{
+const filteredMajors = computed(() => {
   let final = [];
-  majorsMap.value.forEach((major,index) => {
-    let temp = {ID: index, Name: major.Name }
+  majorsMap.value.forEach((major, index) => {
+    let temp = { ID: index, Name: major.Name }
     final.push(temp);
   });
   return final
-  
+
 })
 
 
@@ -111,9 +125,8 @@ const lastName = ref("");
 
 const email = ref("");
 const birthdate = ref("");
+const gradYear = ref("");
 const quizMode = ref("intro");
-
-
 
 const quizStore = useQuizStore();
 
@@ -138,16 +151,24 @@ function restartQuiz() {
 
 async function initialize() {
 
-
   if (isResponseValid.value) {
 
-    let sendData = { firstName: firstName.value, lastName: lastName.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value };
+    let sendData = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      birthdate: birthdate.value,
+      major: selectedMajor.value,
+      gradYear: gradYear.value
+    };
 
     await quizStore.setInstance(sendData);
+    if (["certain", "explore"].includes(quizMode.value)) {
+      quizStore.setSelectedMajorID(selectedMajor.value);
+    }
 
     if (quizMode.value == "certain") {
-   
-      quizStore.setSelectedMajorID(selectedMajor.value);
+
       activePhase.value = "result"
     } else {
       activePhase.value = "quiz"
@@ -248,31 +269,17 @@ h2.question {
   }
 }
 
-ol {
-  text-align: left;
-  list-style-type: none;
-  padding: 0;
-  margin: 1rem 0 0;
 
-  li {
-    margin: 0;
-    padding: 0;
+.radio-card {
+  :deep(.v-label) {
+    width: 100% !important;
   }
 
-  label {
-    display: block;
-    background: #fff;
-    padding: 1.5rem 2rem;
-    margin: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.5rem rgba(black, 0.25);
-    transition: background 250ms ease;
-
-    &:hover,
-    &:focus {
-      background: darken(white, 5%);
-    }
+  &:hover,
+  &:focus {
+    background: darken(white, 5%);
   }
+
 }
 
 input[type='radio'] {
