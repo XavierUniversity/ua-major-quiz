@@ -1,8 +1,7 @@
 export default {
   empty(message = false) {
     return (value) => {
-      if (value) return true;
-
+      if (value || value === 0) return true;
       return message === false ? "Cannot Be Empty" : message;
     };
   },
@@ -48,15 +47,12 @@ export default {
       return message === false ? "Not Valid Csv" : message;
     };
   },
-  inputSizeLessThan(sizeLimit = 2097152, message = false){
-
+  inputSizeLessThan(sizeLimit = 2097152, message = false) {
     return (value) => {
-
       if (value[0].size < sizeLimit) {
         return true;
       }
       return message === false ? "File Size is too large" : message;
     };
-
-  }
+  },
 };
