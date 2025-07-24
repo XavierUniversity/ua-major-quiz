@@ -9,7 +9,7 @@
 
   <div class="quiz__q" v-if="activePhase === 'form'">
     <h2>Find Your Major</h2>
-    
+
     <v-form v-model="isResponseValid" @submit.prevent="initialize()">
       <v-text-field label="First Name" v-model="firstName" :rules="[rules.empty()]"></v-text-field>
       <v-text-field label="Last Name" v-model="lastName" :rules="[rules.empty()]"></v-text-field>
@@ -59,7 +59,11 @@
       <div v-if="index === questionIndex">
         <h2 class="question">{{ question.Question }}</h2>
         <v-radio-group v-model="userResponses[question.QuestionID]">
-          <v-radio v-for="(answer, index) in question.Answers" :value="answer.ID" :label="answer.Text"></v-radio>
+          <v-card class="radio-card" elevation3>
+
+            <v-radio  v-for="(answer, index) in question.Answers"  class="radio-card" :value="answer.ID" :label="answer.Text"></v-radio>
+
+          </v-card>
         </v-radio-group>
 
         <hr />
@@ -266,7 +270,7 @@ h2.question {
   }
 }
 
-ol {
+.radio-card {
   text-align: left;
   list-style-type: none;
   padding: 0;
@@ -296,4 +300,13 @@ ol {
 input[type='radio'] {
   margin-right: 0.75rem;
 }
+
+// .radio-card {
+//   margin-bottom: 10px;
+
+//   &:hover,
+//   &:focus {
+//     background: darken(white, 5%);
+//   }
+// }
 </style>

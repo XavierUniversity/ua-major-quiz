@@ -5,6 +5,11 @@
         </div>
         <v-skeleton-loader v-if="isLoading" type="card"></v-skeleton-loader>
 
+        <div v-if="!isLoading" class="text--center" style="text-align: center;">
+            <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
+                &raquo;</button>
+        </div>
+
 
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">
             <div class="loader-block">
@@ -89,7 +94,6 @@
 
             </div>
 
-
             <div class="loader-block">
                 <p>We also think these would be great majors for you to explore as you continue
                     your college
@@ -148,10 +152,7 @@
                 </p>
             </div>
 
-            <div class="text--center" style="text-align: center;">
-                <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
-                    &raquo;</button>
-            </div>
+
 
         </div>
 
@@ -230,10 +231,7 @@
                     also about discovering who you are and what kind of life you want to build.
                 </p>
             </div>
-            <div class="text--center" style="text-align: center;">
-                <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
-                    &raquo;</button>
-            </div>
+
 
         </div>
 
@@ -250,8 +248,6 @@ import { useQuizStore } from "@/store/QuizStore";
 
 import { storeToRefs } from 'pinia';
 import { useTimeoutFn } from "@vueuse/core";
-
-const loaderCount = ref(0);
 
 const isLoading = ref(false);
 
