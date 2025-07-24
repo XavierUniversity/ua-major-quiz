@@ -73,7 +73,7 @@
         </div>
 
         <div id="active-text" v-if="mode === 'explore'" style="display:none;">
-            <div v-if="loaderCount > 1" class="loader-block">
+            <div class="loader-block">
                 <h2>Thinking About a Major, But Still Exploring? Here’s How to Apply to College with
                     Confidence</h2>
                 <p>
@@ -266,10 +266,10 @@ onMounted(() => {
     let text = "";
 
     function aiType() {
-        if(i+5 < htmlString.length){
-            i = i+5;
-        }else{
-            i= htmlString.length;
+        if (i + 5 < htmlString.length) {
+            i = i + 5;
+        } else {
+            i = htmlString.length;
         }
         text = htmlString.slice(0, i);
         typewriterContainer.innerHTML = text;
