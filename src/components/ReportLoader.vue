@@ -9,7 +9,7 @@
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">
             <div class="loader-block">
                 <h2>Here’s How to Make the Most of Knowing Your Major When Applying to College </h2>
-                <p>You told us your intended major is: <strong>{{ selectedMajor.Name }}</strong></p>
+                <h3>You told us your intended major is: <strong>{{ selectedMajor.Name }}</strong></h3>
 
                 <MajorSummary></MajorSummary>
 
@@ -80,9 +80,10 @@
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can
                     begin looking at colleges with a purpose, while still leaving room to grow and discover new
                     interests.
-                    You’ve shown interest in <strong>{{ selectedMajor.Name }}</strong>, and that’s a great place to
-                    start.
                 </p>
+
+                <h3>You’ve shown interest in <strong>{{ selectedMajor.Name }}</strong>, and that’s a great place to
+                    start.</h3>
 
                 <MajorSummary></MajorSummary>
 
@@ -248,7 +249,7 @@ import MajorSummary from '@/components/MajorSummary.vue';
 import { useQuizStore } from "@/store/QuizStore";
 
 import { storeToRefs } from 'pinia';
-import { useIntervalFn } from "@vueuse/core";
+import { useTimeoutFn } from "@vueuse/core";
 
 const loaderCount = ref(0);
 
@@ -258,7 +259,6 @@ onMounted(() => {
 
     isLoading.value = true;
     const htmlString = document.getElementById("active-text").innerHTML;
-    console.log(htmlString)
     const typewriterContainer = document.getElementById("typewriter");
 
     let i = 0;
@@ -266,7 +266,12 @@ onMounted(() => {
     let text = "";
 
     function aiType() {
-        text = htmlString.slice(0, ++i);
+        if(i+5 < htmlString.length){
+            i = i+5;
+        }else{
+            i= htmlString.length;
+        }
+        text = htmlString.slice(0, i);
         typewriterContainer.innerHTML = text;
 
         const char = htmlString.charAt(i - 1);
@@ -274,7 +279,9 @@ onMounted(() => {
         if (char === ">") isTag = false;
 
         if (i < htmlString.length) {
-            setTimeout(aiType, isTag ? 0 : 50); // Skip delay inside tags
+            setTimeout(aiType, isTag ? 0 : 1);
+        } else {
+            isLoading.value = false;
         }
     };
 
