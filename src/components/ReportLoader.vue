@@ -12,7 +12,7 @@
 
 
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">
-            <div class="loader-block">
+            <div>
                 <h2>Here’s How to Make the Most of Knowing Your Major When Applying to College </h2>
                 <h3>You told us your intended major is: <strong>{{ selectedMajor.Name }}</strong></h3>
 
@@ -23,7 +23,7 @@
 
             </div>
 
-            <div class="loader-block">
+            <div>
 
                 <p>If you’re heading into the college search with a major already in mind—great! That kind of
                     focus can help you streamline your choices and find programs that match your goals. But
@@ -37,7 +37,7 @@
                     internships. Dig into the specifics.</p>
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3> 2. Check for Admission Requirements</h3>
 
                 <p>Some majors—especially in areas like engineering, nursing, business, or performing arts—
@@ -45,7 +45,7 @@
                     GPA thresholds, prerequisite courses, portfolios, or auditions.</p>
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3> 3. Explore Related Opportunities Early</h3>
 
 
@@ -54,7 +54,7 @@
                     plan for future grad school.</p>
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3>4. Communicate Your Passion in Your Application</h3>
 
                 <p>Knowing your major gives you a strong foundation for your application essays. Use your
@@ -78,7 +78,7 @@
         </div>
 
         <div id="active-text" v-if="mode === 'explore'" style="display:none;">
-            <div class="loader-block">
+            <div>
                 <h2>Thinking About a Major, But Still Exploring? Here’s How to Apply to College with
                     Confidence</h2>
                 <p>
@@ -94,19 +94,6 @@
 
             </div>
 
-            <div class="loader-block">
-                <p>We also think these would be great majors for you to explore as you continue
-                    your college
-                    search.</p>
-
-                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
-
-                <br />
-                <br />
-            </div>
-
-
-
             <div>
                 <p>
                     Here are some additional tips to help you navigate the application process when you’ve
@@ -120,7 +107,7 @@
                 </p>
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3>2. Explore Schools, Like Xavier, That Support Exploratory Students</h3>
                 <p>
                     It’s completely normal not to know what you want to major in when applying. Xavier offers
@@ -129,7 +116,7 @@
                 </p>
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3>3. Talk to People Who’ve Been There</h3>
                 <p>
                     Reach out to current college students or alumni in your potential major. Ask how they
@@ -140,7 +127,7 @@
             </div>
 
 
-            <div class="loader-block">
+            <div>
                 <h3>4. Use Your Application to Show Curiosity and Openness</h3>
                 <p>
                     You don’t have to pretend to be 100% certain in your essays. In fact, colleges appreciate
@@ -153,26 +140,30 @@
             </div>
 
 
-
-        </div>
-
-        <div id="active-text" v-if="mode === 'quiz'" style="display:none;">
-            <div class="loader-block">
-                <h2>Selecting a College Major: What to Consider Before You Apply</h2>
-                <p>
-                    Choosing a college major can feel like a high-stakes decision—after all, it often shapes
-                    your academic journey and may influence your future career path. But while it’s important,
-                    it doesn’t have to be overwhelming.
-                    Based on your answers, we think these would be great majors for you to explore:</p>
+            <div>
+                <p>We also think these would be great majors for you to explore as you continue
+                    your college
+                    search.</p>
 
                 <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+
                 <br />
                 <br />
             </div>
 
+        </div>
 
-            <div class="loader-block">
-                <p>Here are some additional tips as you consider your options:</p>
+        <div id="active-text" v-if="mode === 'quiz'" style="display:none;">
+            <div>
+                <h2>Selecting a College Major: What to Consider Before You Apply</h2>
+                <p>
+                    Choosing a college major can feel like a high-stakes decision—after all, it often shapes
+                    your academic journey and may influence your future career path. But while it’s important,
+                    it doesn’t have to be overwhelming.</p>
+            </div>
+
+            <div>
+                <p>Here are some tips as you consider your options:</p>
                 <h3>
                     1. Start with Your Interests and Strengths
                 </h3>
@@ -189,7 +180,7 @@
 
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3>
                     2. Explore Career Goals and Job Market Trends
                 </h3>
@@ -208,7 +199,7 @@
 
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3>
                     3. Understand the Flexibility of Your Choice
                 </h3>
@@ -218,7 +209,7 @@
                 </p>
             </div>
 
-            <div class="loader-block">
+            <div>
                 <h3>
                     4. Don’t Panic if You’re Undecided
                 </h3>
@@ -232,7 +223,11 @@
                 </p>
             </div>
 
+            <p>Based on your answers, we think these would be great majors for you to explore:</p>
 
+            <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+            <br />
+            <br />
         </div>
 
     </div>
@@ -261,7 +256,7 @@ onMounted(() => {
     let isTag = false;
     let text = "";
     let count = 0;
-    let chunkSize= 5;
+    let chunkSize = 5;
 
     function aiType() {
         if (i + chunkSize < htmlString.length) {
@@ -272,7 +267,7 @@ onMounted(() => {
 
         count++;
 
-        if(count == 100){
+        if (count == 100) {
             chunkSize += 10;
         }
 
