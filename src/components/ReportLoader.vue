@@ -260,13 +260,22 @@ onMounted(() => {
     let i = 0;
     let isTag = false;
     let text = "";
+    let count = 0;
+    let chunkSize= 5;
 
     function aiType() {
-        if (i + 5 < htmlString.length) {
-            i = i + 5;
+        if (i + chunkSize < htmlString.length) {
+            i = i + chunkSize;
         } else {
             i = htmlString.length;
         }
+
+        count++;
+
+        if(count == 100){
+            chunkSize += 10;
+        }
+        
         text = htmlString.slice(0, i);
         typewriterContainer.innerHTML = text;
 
