@@ -8,6 +8,8 @@
   </div>
 
   <div class="quiz__q" v-if="activePhase === 'form'">
+    <h2>Find Your Major</h2>
+    
     <v-form v-model="isResponseValid" @submit.prevent="initialize()">
       <v-text-field label="First Name" v-model="firstName" :rules="[rules.empty()]"></v-text-field>
       <v-text-field label="Last Name" v-model="lastName" :rules="[rules.empty()]"></v-text-field>
@@ -148,7 +150,14 @@ async function initialize() {
 
   if (isResponseValid.value) {
 
-    let sendData = { firstName: firstName.value, lastName: lastName.value, email: email.value, birthdate: birthdate.value, major: selectedMajor.value, gradYear: gradYear.value };
+    let sendData = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      birthdate: birthdate.value,
+      major: selectedMajor.value,
+      gradYear: gradYear.value
+    };
 
     await quizStore.setInstance(sendData);
     if (["certain", "explore"].includes(quizMode.value)) {
