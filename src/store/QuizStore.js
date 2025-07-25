@@ -9,6 +9,7 @@ const defaultState = {
   _majorsMap: {},
   _outcomeMajors: [],
   _selectedMajorID: 0,
+  _user: {},
 };
 export const useQuizStore = defineStore("QuizStore", {
   state: () => {
@@ -23,8 +24,8 @@ export const useQuizStore = defineStore("QuizStore", {
     selectedMajor: (state) => state._majorsMap[state._selectedMajorID],
   },
   actions: {
-    setSelectedMajorID(id){
-      this._selectedMajorID =  id;
+    setSelectedMajorID(id) {
+      this._selectedMajorID = id;
     },
     async fetchQuestions() {
       let res = await api.getQuestions();
@@ -37,8 +38,9 @@ export const useQuizStore = defineStore("QuizStore", {
       });
       this._outcome = res.data;
     },
-    async setInstance(answers) {
-      let res = await api.setInstance(answers);
+    async setInstance(formResponse) {
+      this._user = formResponse;
+      let res = await api.setInstance(formResponse);
       this._instanceID = res.data;
     },
     async fetchMajors() {

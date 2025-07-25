@@ -217,6 +217,7 @@ function restart() {
 .btn {
   &--secondary {
     background: #1a1aff;
+    border-color: #1a1aff;
     color: white;
 
     &:hover,
