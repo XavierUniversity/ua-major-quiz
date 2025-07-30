@@ -1,7 +1,7 @@
 <template>
   <div class="quiz__content" v-if="activePhase === 'intro'">
-    <h2 class="quiz__content">Find Your Major</h2>
-    <p class="quiz__content">Learn what areas of study might be a good fit for you.</p>
+    <h2 class="quiz__content">Find Your Fit</h2>
+    <p class="quiz__content">Generate your personalized major plan from Xavier University.</p>
     <button v-on:click="start" class="btn btn--secondary btn--inline">
       Take the Quiz
     </button>
@@ -17,7 +17,6 @@
       <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
       <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]" label="Birthdate"></v-date-input>
 
-
       <h3>What year will you graduate high school?</h3>
       <v-radio-group v-model="gradYear" :rules="[rules.empty()]">
         <v-radio value="2026" label="2026"></v-radio>
@@ -26,7 +25,6 @@
         <v-radio value="2029" label="2029"></v-radio>
       </v-radio-group>
 
-
       <h3>Do you know what Major you want to study?</h3>
       <v-radio-group v-model="quizMode" :rules="[rules.empty()]">
         <v-radio value="certain" label="Yes, I’m certain!"></v-radio>
@@ -34,6 +32,7 @@
         <v-radio value="quiz" label="I’m still figuring it out."></v-radio>
       </v-radio-group>
 
+      <h3 v-if="quizMode === 'explore'" class="mb-5">What Major are you considering?</h3>
 
       <v-autocomplete :rules="[rules.empty()]" v-if="(quizMode == 'certain' || quizMode == 'explore')"
         label="Select Major" v-model="selectedMajor" item-title="Name" item-value="ID"
@@ -45,6 +44,15 @@
 
     </v-form>
 
+
+  </div>
+
+  <div class="quiz__q" v-if="activePhase === 'loader'">
+    <h2>Let's get to know you a little better.</h2>
+    <br />
+    <br />
+
+    <v-progress-linear color="#1a1aff" striped height="10" v-model="loaderTimer"></v-progress-linear>
 
   </div>
 
@@ -99,6 +107,7 @@ import rules from "@/assets/js/rules";
 // PHASES
 //   'intro',
 //   'form',
+//   'loader'
 //   'quiz',
 //   'result',
 // 
@@ -130,6 +139,9 @@ const quizMode = ref("intro");
 
 const quizStore = useQuizStore();
 
+
+const loaderTimer = ref(0);
+
 const { questionMap, outcome, majorsMap } = storeToRefs(quizStore);
 
 onBeforeMount(async () => {
@@ -147,6 +159,16 @@ function restartQuiz() {
   questionIndex.value = 0;
   userResponses.value = [];
   activePhase.value = "quiz"
+}
+function incrementTimer() {
+  loaderTimer.value += 5;
+  if (loaderTimer.value < 100) {
+    setTimeout(() => {
+      incrementTimer()
+    }, 75);
+  } else {
+    activePhase.value = "quiz"
+  }
 }
 
 async function initialize() {
@@ -168,10 +190,13 @@ async function initialize() {
     }
 
     if (quizMode.value == "certain") {
-
       activePhase.value = "result"
     } else {
-      activePhase.value = "quiz"
+      activePhase.value = "loader"
+      loaderTimer.value = 0
+
+      incrementTimer();
+
     }
   }
 
