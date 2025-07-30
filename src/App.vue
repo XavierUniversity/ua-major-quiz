@@ -13,7 +13,9 @@ import Home from '@/views/Home.vue';
 .quiz {
   background-color: #0C2340;
   background-image: url('@/assets/quiz-background.webp');
-  background-size: cover;
+  background-size: cover fixed;
+  background-repeat: repeat-y;
+
   text-align: center;
   padding: 5.5rem 0.5rem;
   min-height: 100vh;
