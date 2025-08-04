@@ -144,9 +144,9 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for applying to colleges and discovering what
                     might interest you.</h2>
-                <p>
+                <h3>
                     Choosing a college major can feel like a high-stakes decision, but it doesn’t have to be
-                    overwhelming. Consider the following:</p>
+                    overwhelming. Consider the following:</h3>
             </div>
 
             <div>
