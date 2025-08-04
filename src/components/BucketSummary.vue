@@ -2,20 +2,15 @@
   <div>
     <p>Based on your answers, we recommend&hellip;</p>
     <h2>{{ title }}</h2>
-    <div class="select-box cta-card__2x1">
-      <div class="select-box__container" v-for="major in majors" :key="major.MajorID">
-        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 8 99" preserveAspectRatio="xMidYMid slice"
-          style="position:absolute;width:8px;height:100%;" version="1.1" viewBox="0 0 8 99" x="0px" xml:space="preserve"
-          y="0px">
-          <rect fill="#1a1aff" height="33" width="8" y="33"></rect>
-        </svg>
-        <div class="select-box__container--content">
+    <v-div>
+      <div v-for="major in majors" :key="major.MajorID">
+        <div>
           <h3><a class="select-box__link" :href="major.link">{{ major.name }}</a></h3>
           <p v-if="major.description">{{ major.description }} </p>
         </div>
       </div>
-    </div>
-   
+    </v-div>
+
   </div>
 </template>
 
