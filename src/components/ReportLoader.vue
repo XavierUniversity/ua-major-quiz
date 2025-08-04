@@ -15,7 +15,7 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application as a {{
                     selectedMajor.Name }} major.</h2>
-                <h3>Heading to college with a major in mind is great! And you’ve made an excellent choice.</h3>
+                <p>Heading to college with a major in mind is great! And you’ve made an excellent choice.</p>
 
                 <MajorSummary></MajorSummary>
 
@@ -81,10 +81,10 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application while still
                     exploring your program options.</h2>
-                <h3>
+                <p>
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
                     looking at colleges with a purpose, while still leaving room to grow and discover new interests.
-                </h3>
+                </p>
 
                 <MajorSummary></MajorSummary>
 
@@ -144,9 +144,9 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for applying to colleges and discovering what
                     might interest you.</h2>
-                <h3>
+                <p>
                     Choosing a college major can feel like a high-stakes decision, but it doesn’t have to be
-                    overwhelming. Consider the following:</h3>
+                    overwhelming. Consider the following:</p>
             </div>
 
             <div>
@@ -310,6 +310,10 @@ function restart() {
 <style lang="scss" scoped>
 p {
     margin-bottom: 50px;
+}
+
+ul{
+    margin-left:10px;
 }
 
 .list-margin {

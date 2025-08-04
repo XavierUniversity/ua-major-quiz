@@ -25,11 +25,6 @@ const { title, description, majors } = defineProps({
 })
 
 
-
-
-
-
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -37,8 +32,6 @@ const { title, description, majors } = defineProps({
 ul {
   text-align: left;
   margin-top: 0;
-
-
 }
 
 h2 {
