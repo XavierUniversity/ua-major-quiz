@@ -13,8 +13,13 @@
 
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">
             <div>
-                <h2>Here’s How to Make the Most of Knowing Your Major When Applying to College </h2>
-                <h3>You told us your intended major is: <strong>{{ selectedMajor.Name }}</strong></h3>
+                <h2>{{ user.firstName }}, here’s your personalized plan for starting your application as a {{
+                    selectedMajor.Name }} major.</h2>
+                <h3>Heading to college with a major in mind is great! And you’ve made an excellent choice.</h3>
+
+                <p>
+                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+                </p>
 
                 <MajorSummary></MajorSummary>
 
@@ -24,11 +29,9 @@
             </div>
 
             <div>
-
-                <p>If you’re heading into the college search with a major already in mind—great! That kind of
-                    focus can help you streamline your choices and find programs that match your goals. But
-                    knowing what you want to study is just the beginning.
-                    Here are some key tips to help you apply to college with a declared major:</p>
+                <p>Being able to focus in on your program from the beginning can set you up for success and help you
+                    more easily find a college that’s the right fit. Here are some tips to help you apply to college
+                    with a declared major:</p>
 
                 <h3>1. Research Programs in Depth</h3>
 
@@ -79,16 +82,16 @@
 
         <div id="active-text" v-if="mode === 'explore'" style="display:none;">
             <div>
-                <h2>Thinking About a Major, But Still Exploring? Here’s How to Apply to College with
-                    Confidence</h2>
+                <h2>{{ user.firstName }}, here’s your personalized plan for starting your application while still
+                    exploring your program options.</h2>
                 <p>
-                    Having a major in mind, even if you're still exploring, is a smart move. It means you can
-                    begin looking at colleges with a purpose, while still leaving room to grow and discover new
-                    interests.
+                    Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
+                    looking at colleges with a purpose, while still leaving room to grow and discover new interests.
                 </p>
 
-                <h3>You’ve shown interest in <strong>{{ selectedMajor.Name }}</strong>, and that’s a great place to
-                    start.</h3>
+                <p>
+                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+                </p>
 
                 <MajorSummary></MajorSummary>
 
@@ -96,8 +99,8 @@
 
             <div>
                 <p>
-                    Here are some additional tips to help you navigate the application process when you’ve
-                    mostly decided, but are still open to exploring:
+                    As you continue navigating the application process and researching programs, here are some
+                    additional tips to help you find your passion:
                 </p>
                 <h3>1. Start with What Interests You</h3>
                 <p>
@@ -117,28 +120,19 @@
             </div>
 
             <div>
-                <h3>3. Talk to People Who’ve Been There</h3>
+                <h3>3. Use Your Application to Show Curiosity and Openness</h3>
                 <p>
-                    Reach out to current college students or alumni in your potential major. Ask how they
-                    chose their path and whether they changed their minds along the way. You might be
-                    surprised by how many people shift focus after their first year—and how valuable that
-                    flexibility was.
+                    You don’t have to pretend to be 100% certain in your essay. Colleges appreciate students who are
+                    intellectually curious and reflective. Being interested in a major, without locking yourself in, is
+                    a great position to be in. You’ve got direction, but also the flexibility to discover even more
+                    about yourself in college. The key is to apply to schools that support both your current interests
+                    and your future exploration.
+
+                    After learning more about you, we think you’d also be a great fit for {{ outcome.name }} majors.
+                    Here
+                    are a few options worth exploring!
                 </p>
             </div>
-
-
-            <div>
-                <h3>4. Use Your Application to Show Curiosity and Openness</h3>
-                <p>
-                    You don’t have to pretend to be 100% certain in your essays. In fact, colleges appreciate
-                    students who are intellectually curious and reflective.
-                    Being interested in a major—without locking yourself in—is a great position to be in. You’ve
-                    got direction, but also the flexibility to discover even more about yourself in college. The
-                    key is to apply to schools that support both your current interests and your future
-                    exploration.
-                </p>
-            </div>
-
 
             <div>
                 <p>We also think these would be great majors for you to explore as you continue
@@ -155,15 +149,14 @@
 
         <div id="active-text" v-if="mode === 'quiz'" style="display:none;">
             <div>
-                <h2>Selecting a College Major: What to Consider Before You Apply</h2>
+                <h2>{{ user.firstName }}, here’s your personalized plan for applying to colleges and discovering what
+                    might interest you.</h2>
                 <p>
-                    Choosing a college major can feel like a high-stakes decision—after all, it often shapes
-                    your academic journey and may influence your future career path. But while it’s important,
-                    it doesn’t have to be overwhelming.</p>
+                    Choosing a college major can feel like a high-stakes decision, but it doesn’t have to be
+                    overwhelming. Consider the following:</p>
             </div>
 
             <div>
-                <p>Here are some tips as you consider your options:</p>
                 <h3>
                     1. Start with Your Interests and Strengths
                 </h3>
@@ -205,7 +198,8 @@
                 </h3>
                 <p>
                     Many students change their major at least once during college. Xavier makes it easy to
-                    switch between majors and encourages exploration!
+                    switch between majors and encourages exploration! Consider applying to Xavier as an Exploratory
+                    major to give yourself the time and space to grow
                 </p>
             </div>
 
@@ -223,7 +217,8 @@
                 </p>
             </div>
 
-            <p>Based on your answers, we think these would be great majors for you to explore:</p>
+            <p>After learning more about you, we think you’d be a great fit for {{ outcome.name }} majors. Here are a few
+                options worth exploring!</p>
 
             <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
             <br />
