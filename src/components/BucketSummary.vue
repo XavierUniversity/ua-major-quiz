@@ -2,14 +2,12 @@
   <div>
     <p>Based on your answers, we recommend&hellip;</p>
     <h2>{{ title }}</h2>
-    <v-div>
-      <div v-for="major in majors" :key="major.MajorID">
-        <div>
-          <h3><a class="select-box__link" :href="major.link">{{ major.name }}</a></h3>
-          <p v-if="major.description">{{ major.description }} </p>
-        </div>
+    <ul v-for="major in majors" :key="major.MajorID">
+      <div>
+        <h3><a class="select-box__link" :href="major.link">{{ major.name }}</a></h3>
+        <p v-if="major.description">{{ major.description }} </p>
       </div>
-    </v-div>
+    </ul>
 
   </div>
 </template>
@@ -40,10 +38,7 @@ ul {
   text-align: left;
   margin-top: 0;
 
-  @media screen and (min-width: 768px) {
-    column-count: 2;
-    vertical-align: top;
-  }
+
 }
 
 h2 {
@@ -56,15 +51,6 @@ h2 {
   }
 }
 
-p {
-  color: #0C2340;
-  font-size: 1.8rem;
-  margin: 0;
-
-  @media (min-width: 992px) {
-    text-align: center;
-  }
-}
 
 .select-box {
   &__link {
@@ -74,6 +60,8 @@ p {
     &:active {
       color: #1a1aff;
     }
+
+    text-decoration: underline;
   }
 
   p {

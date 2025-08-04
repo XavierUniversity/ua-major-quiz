@@ -17,10 +17,6 @@
                     selectedMajor.Name }} major.</h2>
                 <h3>Heading to college with a major in mind is great! And you’ve made an excellent choice.</h3>
 
-                <p>
-                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
-                </p>
-
                 <MajorSummary></MajorSummary>
 
                 <br />
@@ -59,9 +55,11 @@
 
             <div>
                 <h3>4. Communicate Your Passion in Your Application</h3>
-
-                <p>Knowing your major gives you a strong foundation for your application essays. Use your
+                <p class="list-margin">Knowing your major gives you a strong foundation for your application essays. Use
+                    your
                     essay to share:
+
+                </p>
                 <ul>
                     <li>Why you chose your major</li>
                     <li>What experiences led you there</li>
@@ -69,7 +67,6 @@
                         What you hope to do with your degree
                     </li>
                 </ul>
-                </p>
 
                 <p>
                     Being sure of your major is a great advantage—but stay curious and adaptable. College
@@ -84,14 +81,10 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application while still
                     exploring your program options.</h2>
-                <p>
+                <h3>
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
                     looking at colleges with a purpose, while still leaving room to grow and discover new interests.
-                </p>
-
-                <p>
-                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
-                </p>
+                </h3>
 
                 <MajorSummary></MajorSummary>
 
@@ -160,16 +153,17 @@
                 <h3>
                     1. Start with Your Interests and Strengths
                 </h3>
-                <p>
+                <p class="list-margin">
                     Think about the subjects you enjoy and excel in. Your natural interests and talents can be
                     good indicators of where you might thrive academically and professionally.
                     Ask yourself:
+
+                </p>
                 <ul>
                     <li>What subjects do I look forward to?</li>
                     <li>What kinds of tasks make me lose track of time?</li>
                     <li> Have teachers or mentors praised me for certain skills? </li>
                 </ul>
-                </p>
 
             </div>
 
@@ -177,18 +171,19 @@
                 <h3>
                     2. Explore Career Goals and Job Market Trends
                 </h3>
-                <p>
+                <p class="list-margin">
                     While you don’t need to have your entire future mapped out, it helps to consider where
                     different majors might lead. Some fields—like nursing, computer science, or engineering—
                     have more defined career paths, while others—like philosophy or history—offer broader
                     options in fields like law, education, or business.
                     Things to research:
+
+                </p>
                 <ul>
                     <li> What kinds of jobs do graduates in this major typically get?</li>
                     <li>What is the job outlook and salary range in that field?</li>
                     <li>Does the major require advanced degrees to be competitive?</li>
                 </ul>
-                </p>
 
             </div>
 
@@ -217,7 +212,8 @@
                 </p>
             </div>
 
-            <p>After learning more about you, we think you’d be a great fit for {{ outcome.name }} majors. Here are a few
+            <p>After learning more about you, we think you’d be a great fit for {{ outcome.name }} majors. Here are a
+                few
                 options worth exploring!</p>
 
             <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
@@ -292,7 +288,7 @@ onMounted(() => {
 
 const quizStore = useQuizStore();
 
-const { outcome, outcomeMajors, selectedMajor } = storeToRefs(quizStore);
+const { outcome, outcomeMajors, selectedMajor, user } = storeToRefs(quizStore);
 
 const { mode } = defineProps({
     mode: { type: String, required: true }
@@ -314,5 +310,9 @@ function restart() {
 <style lang="scss" scoped>
 p {
     margin-bottom: 50px;
+}
+
+.list-margin {
+    margin-bottom: 10px;
 }
 </style>

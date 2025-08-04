@@ -1,6 +1,12 @@
 <template>
     <div>
 
+
+        <h3>
+                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+                </h3>
+
+
         <div class="select-box cta-card__1x1">
             <div class="select-box__container">
                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 8 99"
@@ -75,6 +81,7 @@ p {
         &:active {
             color: #1a1aff;
         }
+        text-decoration: underline;
     }
 
     p {
