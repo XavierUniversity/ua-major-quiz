@@ -61,7 +61,7 @@ h2 {
       color: #1a1aff;
     }
 
-    text-decoration: underline;
+    color: #0C2340;
   }
 
   p {

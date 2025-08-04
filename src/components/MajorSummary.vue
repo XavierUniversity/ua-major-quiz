@@ -81,13 +81,15 @@ p {
         &:active {
             color: #1a1aff;
         }
-        text-decoration: underline;
+    
+
     }
 
     p {
         font-size: 1rem;
         line-height: 1.65;
         text-align: left;
+        padding-left: 10px;
     }
 }
 </style>
