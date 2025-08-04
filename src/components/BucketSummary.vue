@@ -51,10 +51,11 @@ h2 {
     &:hover,
     &:focus,
     &:active {
-      color: #1a1aff;
+      color: #61abe8;
     }
 
-    color: #0C2340;
+    color: #1a1aff;
+
   }
 
   p {
