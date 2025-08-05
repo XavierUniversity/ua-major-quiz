@@ -12,7 +12,7 @@
                 <div class="select-box__container--content">
                     <p v-if="selectedMajor.Description">{{ selectedMajor.Description }} </p>
 
-                    <p><a class="select-box__link" :href="selectedMajor.URL">Learn more about{{
+                    <p><a class="select-box__link" :href="selectedMajor.URL">Learn more about {{
                         selectedMajor.Name
                             }}</a></p>
                 </div>
@@ -67,7 +67,7 @@ p {
 }
 
 .select-box {
-    &__link {
+    a {
 
         &:hover,
         &:focus,
