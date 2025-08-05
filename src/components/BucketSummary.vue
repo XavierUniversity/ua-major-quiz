@@ -1,12 +1,10 @@
 <template>
   <div>
-    <p>Based on your answers, we recommend&hellip;</p>
-    <h2>{{ title }}</h2>
+    <p>Based on your answers, we recommend that you explore:</p>
     <ul v-for="major in majors" :key="major.MajorID">
-      <div>
-        <h3><a class="select-box__link" :href="major.link">{{ major.name }}</a></h3>
-        <p v-if="major.description">{{ major.description }} </p>
-      </div>
+      <li>
+        <a class="select-box__link" :href="major.link">{{ major.name }}</a>
+      </li>
     </ul>
 
   </div>

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div id="typewriter">
-
         </div>
+
         <v-skeleton-loader v-if="isLoading" type="card"></v-skeleton-loader>
 
         <div v-if="!isLoading && mode !== 'certain'" class="text--center" style="text-align: center;">
@@ -10,13 +10,14 @@
                 &raquo;</button>
         </div>
 
-
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application as a {{
                     selectedMajor.Name }} major.</h2>
-                <p>Heading to college with a major in mind is great! And you’ve made an excellent choice.</p>
 
+                <p class="small-margin">Heading to college with a major in mind is great! And you’ve made an excellent choice.
+                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+                </p>
                 <MajorSummary></MajorSummary>
 
                 <br />
@@ -81,17 +82,23 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application while still
                     exploring your program options.</h2>
-                <p>
+
+                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+
+                <p class="small-margin">
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
                     looking at colleges with a purpose, while still leaving room to grow and discover new interests.
+                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+
                 </p>
 
                 <MajorSummary></MajorSummary>
 
             </div>
 
+
             <div>
-                <p>
+                <p style="margin-top: 30px;">
                     As you continue navigating the application process and researching programs, here are some
                     additional tips to help you find your passion:
                 </p>
@@ -128,11 +135,8 @@
             </div>
 
             <div>
-                <p>We also think these would be great majors for you to explore as you continue
-                    your college
-                    search.</p>
 
-                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+
 
                 <br />
                 <br />
@@ -144,10 +148,10 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for applying to colleges and discovering what
                     might interest you.</h2>
-                <p>
-                    Choosing a college major can feel like a high-stakes decision, but it doesn’t have to be
-                    overwhelming. Consider the following:</p>
+               
             </div>
+
+            <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
 
             <div>
                 <h3>
@@ -212,13 +216,7 @@
                 </p>
             </div>
 
-            <p>After learning more about you, we think you’d be a great fit for {{ outcome.name }} majors. Here are a
-                few
-                options worth exploring!</p>
 
-            <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
-            <br />
-            <br />
         </div>
 
     </div>
@@ -312,11 +310,12 @@ p {
     margin-bottom: 50px;
 }
 
-ul{
-    margin-left:10px;
+.list-margin,.small-margin{
+    margin-bottom: 10px;
 }
 
-.list-margin {
-    margin-bottom: 10px;
+ul {
+    padding-left: 10px;
+    margin-left: 10px;
 }
 </style>
