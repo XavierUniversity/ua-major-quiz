@@ -15,7 +15,7 @@
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application as a {{
                     selectedMajor.Name }} major.</h2>
 
-                <p class="small-margin">Heading to college with a major in mind is great! And you’ve made an excellent choice.
+                <p class="mb-0">Heading to college with a major in mind is great! And you’ve made an excellent choice.
                     Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
                 </p>
                 <MajorSummary></MajorSummary>
@@ -83,9 +83,8 @@
                 <h2>{{ user.firstName }}, here’s your personalized plan for starting your application while still
                     exploring your program options.</h2>
 
-                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
 
-                <p  class="small-margin mt-3">
+                <p  class="mb-1 mt-3">
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
                     looking at colleges with a purpose, while still leaving room to grow and discover new interests.
                     Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
@@ -95,6 +94,7 @@
 
             </div>
 
+            <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
 
             <div>
                 <p style="margin-top: 50px;">

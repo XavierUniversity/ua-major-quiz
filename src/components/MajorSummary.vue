@@ -12,7 +12,7 @@
                 <div class="select-box__container--content">
                     <p v-if="selectedMajor.Description">{{ selectedMajor.Description }} </p>
 
-                    <p><a class="select-box__link" :href="selectedMajor.URL">Learn more about {{
+                    <p><a class="select-box__link" :href="selectedMajor.URL">Learn More About {{
                         selectedMajor.Name
                             }}</a></p>
                 </div>
@@ -46,16 +46,6 @@ ul {
     }
 }
 
-h2 {
-    margin: 0 0 2rem;
-    padding: 0;
-    font-size: 2.4rem;
-
-    @media (min-width: 992px) {
-        text-align: center;
-    }
-}
-
 p {
     color: #0C2340;
     font-size: 1.8rem;
@@ -65,24 +55,14 @@ p {
         text-align: center;
     }
 }
+a {
 
-.select-box {
-    a {
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: #1a1aff;
-        }
+&:hover,
+&:focus,
+&:active {
+    color: #1a1aff;
+}
 
 
-    }
-
-    p {
-        font-size: 1rem;
-        line-height: 1.65;
-        text-align: left;
-        padding-left: 10px;
-    }
 }
 </style>

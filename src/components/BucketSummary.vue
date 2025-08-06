@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Based on your answers, we recommend that you explore:</p>
+    <p>Based on your answers, we recommend that you explore the following majors:</p>
     <ul v-for="major in majors" :key="major.MajorID">
       <li>
         <a class="select-box__link" :href="major.link">{{ major.name }}</a>
