@@ -46,6 +46,16 @@ ul {
     }
 }
 
+h2 {
+    margin: 0 0 2rem;
+    padding: 0;
+    font-size: 2.4rem;
+
+    @media (min-width: 992px) {
+        text-align: center;
+    }
+}
+
 p {
     color: #0C2340;
     font-size: 1.8rem;
@@ -55,14 +65,24 @@ p {
         text-align: center;
     }
 }
-a {
 
-&:hover,
-&:focus,
-&:active {
-    color: #1a1aff;
-}
+.select-box {
+    margin-top: 0px;
+    a {
 
+        &:hover,
+        &:focus,
+        &:active {
+            color: #61abe8;
+        }
+        color: #1a1aff;
+    }
 
+    p {
+        font-size: 1rem;
+        line-height: 1.65;
+        text-align: left;
+        padding-left: 10px;
+    }
 }
 </style>

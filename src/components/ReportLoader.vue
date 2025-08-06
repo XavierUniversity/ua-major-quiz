@@ -84,7 +84,7 @@
                     exploring your program options.</h2>
 
 
-                <p  class="mb-1 mt-3">
+                <p class="mb-1 mt-3">
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
                     looking at colleges with a purpose, while still leaving room to grow and discover new interests.
                     Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
@@ -94,7 +94,11 @@
 
             </div>
 
-            <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+            <div style="margin-top: 50px;">
+                <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
+
+            </div>
+
 
             <div>
                 <p style="margin-top: 50px;">
@@ -147,7 +151,7 @@
             <div>
                 <h2>{{ user.firstName }}, here’s your personalized plan for applying to colleges and discovering what
                     might interest you.</h2>
-               
+
             </div>
 
             <BucketSummary :title="outcome.name" :majors="outcomeMajors"></BucketSummary>
@@ -309,7 +313,8 @@ p {
     margin-bottom: 50px;
 }
 
-.list-margin,.small-margin{
+.list-margin,
+.small-margin {
     margin-bottom: 10px;
 }
 
