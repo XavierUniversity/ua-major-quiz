@@ -12,11 +12,11 @@
 
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">
             <div>
-                <h2>{{ user.firstName }}, here’s your personalized plan for starting your application as a {{
+                <h2><strong class="header-name">{{ user.firstName }}</strong>, here’s your personalized plan for starting your application as a {{
                     selectedMajor.Name }} major.</h2>
 
                 <p class="mb-0">Heading to college with a major in mind is great! And you’ve made an excellent choice.
-                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+                    <strong>Xavier’s {{ selectedMajor.Name }}</strong> program has a lot to offer:
                 </p>
                 <MajorSummary></MajorSummary>
 
@@ -316,6 +316,14 @@ p {
 .list-margin,
 .small-margin {
     margin-bottom: 10px;
+}
+
+.header-name{
+    font-weight: 700;
+}
+
+h2{
+    font-weight: 400;
 }
 
 ul {

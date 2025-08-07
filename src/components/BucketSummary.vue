@@ -1,11 +1,14 @@
 <template>
   <div>
     <p>Based on your answers, we recommend that you explore the following majors:</p>
-    <ul v-for="major in majors" :key="major.MajorID">
-      <li>
-        <a class="select-box__link" :href="major.link">{{ major.name }}</a>
-      </li>
-    </ul>
+    <v-row>
+      <v-chip-group class="chip-group" column>
+      <v-chip v-for="major in majors" color="#1a1aff" :key="major.MajorID" :href="major.link" variant="outlined">
+        {{ major.name }}
+      </v-chip>
+    </v-chip-group>
+    </v-row>
+   
 
   </div>
 </template>
@@ -27,10 +30,7 @@ const { title, description, majors } = defineProps({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-ul {
-  text-align: left;
-  margin-top: 0;
-}
+
 
 h2 {
   margin: 0 0 2rem;
@@ -61,5 +61,25 @@ h2 {
     line-height: 1.65;
     text-align: left;
   }
+}
+
+
+.chip-group{
+  padding-left: 20px;
+  padding-right: 10px;
+  margin-bottom: 50px;
+  margin-top: 30px;
+
+}
+
+.v-chip{
+  border-width: 2px;
+  border-color: #1a1aff;
+
+  &:hover{
+    background-color: #1a1aff;
+    color:white
+  }
+
 }
 </style>
