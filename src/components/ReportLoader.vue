@@ -80,7 +80,7 @@
 
         <div id="active-text" v-if="mode === 'explore'" style="display:none;">
             <div>
-                <h2>{{ user.firstName }}, here’s your personalized plan for starting your application while still
+                <h2><strong class="header-name">{{ user.firstName }}</strong>, here’s your personalized plan for starting your application while still
                     exploring your program options.</h2>
 
 
@@ -149,7 +149,7 @@
 
         <div id="active-text" v-if="mode === 'quiz'" style="display:none;">
             <div>
-                <h2>{{ user.firstName }}, here’s your personalized plan for applying to colleges and discovering what
+                <h2><strong class="header-name">{{ user.firstName }}</strong>, here’s your personalized plan for applying to colleges and discovering what
                     might interest you.</h2>
 
             </div>
