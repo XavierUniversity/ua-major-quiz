@@ -75,6 +75,7 @@ h2 {
 .v-chip{
   border-width: 2px;
   border-color: #1a1aff;
+  padding: 20px;
 
   &:hover{
     background-color: #1a1aff;

@@ -10,6 +10,11 @@ import Home from '@/views/Home.vue';
 </script>
 
 <style lang="scss">
+
+html{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
 .quiz {
   background-color: #0C2340;
   background-image: url('@/assets/quiz-background.webp');
@@ -41,6 +46,8 @@ import Home from '@/views/Home.vue';
     }
   }
 }
+
+
 
 .start-over {
   position: fixed;

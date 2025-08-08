@@ -70,6 +70,7 @@ p {
     margin-top: 0px;
     a {
 
+        font-weight: 500;
         &:hover,
         &:focus,
         &:active {

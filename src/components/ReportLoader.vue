@@ -16,6 +16,9 @@
                     selectedMajor.Name }} major.</h2>
 
                 <p class="mb-0">Heading to college with a major in mind is great! And you’ve made an excellent choice.
+
+                    <br/>
+                    <br/>
                     <strong>Xavier’s {{ selectedMajor.Name }}</strong> program has a lot to offer:
                 </p>
                 <MajorSummary></MajorSummary>
@@ -87,7 +90,10 @@
                 <p class="mb-1 mt-3">
                     Having a major in mind, even if you're still exploring, is a smart move. It means you can begin
                     looking at colleges with a purpose, while still leaving room to grow and discover new interests.
-                    Xavier’s {{ selectedMajor.Name }} program has a lot to offer:
+
+                    <br/>
+                    <br/>
+                    <strong>Xavier’s {{ selectedMajor.Name }}</strong> program has a lot to offer:
                 </p>
 
                 <MajorSummary></MajorSummary>
@@ -99,9 +105,8 @@
 
             </div>
 
-
             <div>
-                <p style="margin-top: 50px;">
+                <p style="margin-top: 20px;">
                     As you continue navigating the application process and researching programs, here are some
                     additional tips to help you find your passion:
                 </p>
