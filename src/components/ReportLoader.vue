@@ -19,7 +19,7 @@
 
                     <br/>
                     <br/>
-                    <strong>Xavier’s {{ selectedMajor.Name }}</strong> program has a lot to offer:
+                    Xavier’s <strong>{{ selectedMajor.Name }}</strong> program has a lot to offer:
                 </p>
                 <MajorSummary></MajorSummary>
 
@@ -33,7 +33,7 @@
                     more easily find a college that’s the right fit. Here are some tips to help you apply to college
                     with a declared major:</p>
 
-                <h3>1. Research Programs in Depth</h3>
+                <h3>1. Research Programs in Depth.</h3>
 
                 <p>Not all majors are created equal at every college. Some schools have nationally ranked
                     programs, cutting-edge research opportunities, or strong connections to industries and
@@ -41,7 +41,7 @@
             </div>
 
             <div>
-                <h3> 2. Check for Admission Requirements</h3>
+                <h3> 2. Check for Admission Requirements.</h3>
 
                 <p>Some majors—especially in areas like engineering, nursing, business, or performing arts—
                     may have separate or more competitive admissions processes. These might include higher
@@ -49,7 +49,7 @@
             </div>
 
             <div>
-                <h3> 3. Explore Related Opportunities Early</h3>
+                <h3> 3. Explore Related Opportunities Early.</h3>
 
 
                 <p>If you know your major, you can already begin thinking about how to enrich that path.
@@ -58,7 +58,7 @@
             </div>
 
             <div>
-                <h3>4. Communicate Your Passion in Your Application</h3>
+                <h3>4. Communicate Your Passion in Your Application.</h3>
                 <p class="list-margin">Knowing your major gives you a strong foundation for your application essays. Use
                     your
                     essay to share:
@@ -93,7 +93,7 @@
 
                     <br/>
                     <br/>
-                    <strong>Xavier’s {{ selectedMajor.Name }}</strong> program has a lot to offer:
+                   Xavier’s <strong>{{ selectedMajor.Name }}</strong> program has a lot to offer:
                 </p>
 
                 <MajorSummary></MajorSummary>
@@ -110,7 +110,7 @@
                     As you continue navigating the application process and researching programs, here are some
                     additional tips to help you find your passion:
                 </p>
-                <h3>1. Start with What Interests You</h3>
+                <h3>1. Start with What Interests You.</h3>
                 <p>
                     You’ve identified an area you’re curious or passionate about. That’s valuable! As you
                     research colleges, look for programs that support your current interest and give you
@@ -119,7 +119,7 @@
             </div>
 
             <div>
-                <h3>2. Explore Schools, Like Xavier, That Support Exploratory Students</h3>
+                <h3>2. Explore Schools, Like Xavier, That Support Exploratory Students.</h3>
                 <p>
                     It’s completely normal not to know what you want to major in when applying. Xavier offers
                     an Exploratory major, for just that reason! Being undecided can actually be a strength—it
@@ -128,7 +128,7 @@
             </div>
 
             <div>
-                <h3>3. Use Your Application to Show Curiosity and Openness</h3>
+                <h3>3. Use Your Application to Show Curiosity and Openness.</h3>
                 <p>
                     You don’t have to pretend to be 100% certain in your essay. Colleges appreciate students who are
                     intellectually curious and reflective. Being interested in a major, without locking yourself in, is
@@ -163,7 +163,7 @@
 
             <div>
                 <h3>
-                    1. Start with Your Interests and Strengths
+                    1. Start with Your Interests and Strengths.
                 </h3>
                 <p class="list-margin">
                     Think about the subjects you enjoy and excel in. Your natural interests and talents can be
@@ -181,7 +181,7 @@
 
             <div>
                 <h3>
-                    2. Explore Career Goals and Job Market Trends
+                    2. Explore Career Goals and Job Market Trends.
                 </h3>
                 <p class="list-margin">
                     While you don’t need to have your entire future mapped out, it helps to consider where
@@ -201,7 +201,7 @@
 
             <div>
                 <h3>
-                    3. Understand the Flexibility of Your Choice
+                    3. Understand the Flexibility of Your Choice.
                 </h3>
                 <p>
                     Many students change their major at least once during college. Xavier makes it easy to
@@ -212,7 +212,7 @@
 
             <div>
                 <h3>
-                    4. Don’t Panic if You’re Undecided
+                    4. Don’t Panic if You’re Undecided.
                 </h3>
                 <p>
                     It’s completely normal not to know what you want to major in when applying. Xavier offers

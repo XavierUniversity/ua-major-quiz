@@ -64,7 +64,6 @@ html {
 }
 
 
-
 .start-over {
   position: fixed;
   bottom: 24px;

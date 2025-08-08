@@ -70,13 +70,13 @@ h2 {
 
 }
 .v-chip__content{
-  font-weight: 400;
+  font-weight: 200;
 }
 .v-chip {
   border-width: 2px;
   border-color: #1a1aff;
   padding: 18px 24px !important;
-  font-weight: 400;
+  font-weight: 200;
 
 
 
