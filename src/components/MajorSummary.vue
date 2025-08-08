@@ -1,6 +1,7 @@
 <template>
     <div>
 
+
         <div class="select-box cta-card__1x1">
             <div class="select-box__container">
                 <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 8 99"
@@ -9,13 +10,11 @@
                     <rect fill="#1a1aff" height="33" width="8" y="33"></rect>
                 </svg>
                 <div class="select-box__container--content">
-                    <h3><a class="select-box__link" :href="selectedMajor.URL">{{
-                        selectedMajor.Name
-                            }}</a>
-                    </h3>
-
-
                     <p v-if="selectedMajor.Description">{{ selectedMajor.Description }} </p>
+
+                    <p><a class="select-box__link" :href="selectedMajor.URL">Learn More About {{
+                        selectedMajor.Name
+                            }}</a></p>
                 </div>
             </div>
         </div>
@@ -68,19 +67,23 @@ p {
 }
 
 .select-box {
-    &__link {
+    margin-top: 0px;
+    a {
 
+        font-weight: 500;
         &:hover,
         &:focus,
         &:active {
-            color: #1a1aff;
+            color: #61abe8;
         }
+        color: #1a1aff;
     }
 
     p {
         font-size: 1rem;
         line-height: 1.65;
         text-align: left;
+        padding-left: 10px;
     }
 }
 </style>

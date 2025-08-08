@@ -9,7 +9,7 @@ const defaultState = {
   _majorsMap: {},
   _outcomeMajors: [],
   _selectedMajorID: 0,
-  _user: {},
+  _user:{}
 };
 export const useQuizStore = defineStore("QuizStore", {
   state: () => {
@@ -22,6 +22,7 @@ export const useQuizStore = defineStore("QuizStore", {
     majorsMap: (state) => state._majorsMap,
     outcomeMajors: (state) => state._outcomeMajors,
     selectedMajor: (state) => state._majorsMap[state._selectedMajorID],
+    user: (state) => state._user
   },
   actions: {
     setSelectedMajorID(id) {
