@@ -10,11 +10,27 @@ import Home from '@/views/Home.vue';
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: "neuemontreal";
+  src: url("https://www.xavier.edu/_V6/_assets/fonts/ppneuemontreal-regular.woff2") format("woff2"), url("https://www.xavier.edu/_V6/_assets/fonts/ppneuemontreal-regular.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
 
-html{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: "neuemontreal";
+  src: url("https://www.xavier.edu/_V6/_assets/fonts/ppneuemontreal-bold_x.woff2") format("woff2"), url("https://www.xavier.edu/_V6/_assets/fonts/ppneuemontreal-bold_x.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-family: "neuemontreal", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 
 }
+
 .quiz {
   background-color: #0C2340;
   background-image: url('@/assets/quiz-background.webp');

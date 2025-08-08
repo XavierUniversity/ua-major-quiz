@@ -3,12 +3,12 @@
     <p>Based on your answers, we recommend that you explore the following majors:</p>
     <v-row>
       <v-chip-group class="chip-group" column>
-      <v-chip v-for="major in majors" color="#1a1aff" :key="major.MajorID" :href="major.link" variant="outlined">
-        {{ major.name }}
-      </v-chip>
-    </v-chip-group>
+        <v-chip v-for="major in majors" color="#1a1aff" :key="major.MajorID" :href="major.link" variant="outlined">
+          {{ major.name }}
+        </v-chip>
+      </v-chip-group>
     </v-row>
-   
+
 
   </div>
 </template>
@@ -30,8 +30,6 @@ const { title, description, majors } = defineProps({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
-
 h2 {
   margin: 0 0 2rem;
   padding: 0;
@@ -64,22 +62,28 @@ h2 {
 }
 
 
-.chip-group{
+.chip-group {
   padding-left: 20px;
   padding-right: 10px;
   margin-bottom: 50px;
   margin-top: 30px;
 
 }
-
-.v-chip{
+.v-chip__content{
+  font-weight: 400;
+}
+.v-chip {
   border-width: 2px;
   border-color: #1a1aff;
-  padding: 20px;
+  padding: 18px 24px !important;
+  font-weight: 400;
 
-  &:hover{
+
+
+
+  &:hover {
     background-color: #1a1aff;
-    color:white
+    color: white
   }
 
 }
