@@ -2,9 +2,9 @@
   <div class="quiz__content" v-if="activePhase === 'intro'">
     <h2 class="quiz__content">Find Your Fit</h2>
     <p class="quiz__content">Generate your personalized major plan from Xavier University.</p>
-    <button v-on:click="start" class="btn btn--secondary btn--inline">
+    <v-btn @click="start" class="x-btn">
       Take the Quiz
-    </button>
+    </v-btn>
   </div>
 
   <div class="quiz__q" v-if="activePhase === 'form'">
@@ -239,28 +239,11 @@ function restart() {
   }
 }
 
-.btn {
-  &--secondary {
-    background: #1a1aff;
-    border-color: #1a1aff;
-    color: white;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: darken(#1a1aff, 10%);
-    }
-  }
-
-  &--prev,
-  &--next {
-    width: 137px;
-  }
-
-  &--next,
-  &--final {
-    float: right;
-  }
+.x-btn {
+  background: #1a1aff;
+  border-color: #1a1aff;
+  color: white;
+  border-radius: 0px;
 }
 
 .progress {
