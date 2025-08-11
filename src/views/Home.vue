@@ -38,9 +38,9 @@
         label="Select Major" v-model="selectedMajor" item-title="Name" item-value="ID"
         :items="filteredMajors"></v-autocomplete>
 
-      <button type="submit" class="btn btn--secondary btn--inline">
+      <v-btn type="submit" class="x-btn">
         {{ quizMode !== 'certain' ? 'Take the Quiz' : 'Generate Major Report' }}
-      </button>
+      </v-btn>
 
     </v-form>
 
@@ -75,15 +75,15 @@
 
         <hr />
         <!-- The navigation buttons! -->
-        <button v-if="questionIndex > 0" v-on:click="prev" class="btn btn--inline btn--prev">
+        <v-btn v-if="questionIndex > 0" @click="prev" class="x-btn">
           &laquo; Previous
-        </button>
-        <button v-if="questionIndex <= questionMap.length - 2" v-on:click="next" class="btn btn--next btn--inline">
+        </v-btn>
+        <v-btn v-if="questionIndex <= questionMap.length - 2" @click="next" class="x-btn next">
           Next &raquo;
-        </button>
-        <button v-if="questionIndex == questionMap.length - 1" v-on:click="score" class="btn btn--inline btn--final">
+        </v-btn>
+        <v-btn v-if="questionIndex == questionMap.length - 1" @click="score" class="x-btn next">
           Show my Major &raquo;
-        </button>
+        </v-btn>
       </div>
     </div>
   </div>
@@ -244,6 +244,11 @@ function restart() {
   border-color: #1a1aff;
   color: white;
   border-radius: 0px;
+}
+
+.next {
+  float: right;
+
 }
 
 .progress {
