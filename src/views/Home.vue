@@ -78,10 +78,10 @@
         <v-btn v-if="questionIndex > 0" @click="prev" class="x-btn">
           &laquo; Previous
         </v-btn>
-        <v-btn v-if="questionIndex <= questionMap.length - 2" @click="next" class="x-btn">
+        <v-btn v-if="questionIndex <= questionMap.length - 2" @click="next" class="x-btn next">
           Next &raquo;
         </v-btn>
-        <v-btn v-if="questionIndex == questionMap.length - 1" @click="score" class="x-btn">
+        <v-btn v-if="questionIndex == questionMap.length - 1" @click="score" class="x-btn next">
           Show my Major &raquo;
         </v-btn>
       </div>
@@ -244,6 +244,11 @@ function restart() {
   border-color: #1a1aff;
   color: white;
   border-radius: 0px;
+}
+
+.next {
+  float: right;
+
 }
 
 .progress {
