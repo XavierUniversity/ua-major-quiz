@@ -6,8 +6,8 @@
         <v-skeleton-loader v-if="isLoading" type="card"></v-skeleton-loader>
 
         <div v-if="!isLoading && mode !== 'certain'" class="text--center" style="text-align: center;">
-            <button @click="restart()" class="btn btn--inline" style="margin: 2.5rem 0 0;">Restart the quiz
-                &raquo;</button>
+            <v-btn @click="restart()" class="x-btn" style="margin: 2.5rem 0 0;">Restart the quiz
+                &raquo;</v-btn>
         </div>
 
         <div id="active-text" v-if="mode === 'certain'" style="display:none;">

@@ -128,4 +128,8 @@ h1 {
 .contentpage__main {
   padding: 0px !important;
 }
+
+.hero{
+  display: none !important;
+}
 </style>
