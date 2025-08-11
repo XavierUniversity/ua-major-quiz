@@ -335,4 +335,11 @@ ul {
     padding-left: 10px;
     margin-left: 10px;
 }
+
+.x-btn {
+  background: #1a1aff;
+  border-color: #1a1aff;
+  color: white;
+  border-radius: 0px;
+}
 </style>
