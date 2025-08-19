@@ -81,9 +81,6 @@
           &laquo; Previous
         </v-btn>
      
-        <v-btn v-if="questionIndex == questionMap.length - 1" @click="score" class="x-btn next">
-          Show my Major &raquo;
-        </v-btn>
       </div>
     </div>
   </div>
@@ -199,16 +196,17 @@ async function initialize() {
     if (["certain", "explore"].includes(quizMode.value)) {
       quizStore.setSelectedMajorID(selectedMajor.value);
     }
+    loaderTimer.value = 0
 
     if (quizMode.value == "certain") {
       activePhase.value = "generate"
     } else {
       activePhase.value = "loader"
-      loaderTimer.value = 0
-
-      incrementTimer();
-
+     
     }
+
+    incrementTimer();
+
 
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -243,7 +241,10 @@ function prev() {
 async function score() {
   await quizStore.postResults(userResponses.value);
   await quizStore.getOutcomeDetails(outcome.value.ID);
+  loaderTimer.value = 0
   activePhase.value = "generate";
+  incrementTimer();
+
 }
 
 const progress = computed(() => {
@@ -318,5 +319,9 @@ h2.question {
 
 input[type='radio'] {
   margin-right: 0.75rem;
+}
+
+hr{
+  border-color: white;
 }
 </style>
