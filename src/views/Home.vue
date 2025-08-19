@@ -133,7 +133,17 @@ const firstName = ref("");
 const lastName = ref("");
 
 const email = ref("");
-const birthdate = ref("");
+
+
+let tempdate = new Date();
+tempdate.setFullYear(tempdate.getFullYear() - 16);
+
+const year = tempdate.getFullYear();
+const month = String(tempdate.getMonth() + 1).padStart(2, "0");
+const day = String(tempdate.getDate()).padStart(2, "0");
+let temp = year + "-" + month + "-" + day
+
+const birthdate = ref(temp);
 const gradYear = ref("");
 const quizMode = ref("intro");
 
@@ -170,6 +180,8 @@ function incrementTimer() {
     activePhase.value = "quiz"
   }
 }
+
+
 
 async function initialize() {
 
