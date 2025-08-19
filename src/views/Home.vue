@@ -68,8 +68,8 @@
         <h2 class="question">{{ question.Question }}</h2>
         <v-radio-group v-model="userResponses[question.QuestionID]">
 
-          <v-radio class="radio-card" v-for="(answer, index) in question.Answers" :value="answer.ID"
-            :label="answer.Text"></v-radio>
+          <v-radio class="radio-card" v-for="(answer, index) in question.Answers" @click="delayedNext()"
+            :value="answer.ID" :label="answer.Text"></v-radio>
 
         </v-radio-group>
 
@@ -218,6 +218,23 @@ async function initialize() {
 
 function next() {
   questionIndex.value++;
+}
+
+const preventRadioSelect = ref(false);
+function delayedNext() {
+  if (preventRadioSelect.value) {
+    return;
+  }
+  preventRadioSelect.value = true;
+  setTimeout(() => {
+    preventRadioSelect.value = false;
+    if(questionIndex.value >= questionMap.value.length - 1){
+      score();
+    }else{
+      next();
+
+    }
+  }, 150)
 }
 
 function prev() {
