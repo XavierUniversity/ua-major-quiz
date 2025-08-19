@@ -50,7 +50,7 @@ html {
   }
 
   &__q {
-    background: #f8f8f8;
+    background: white;
     width: 100%;
     text-align: left;
     padding: 1rem;

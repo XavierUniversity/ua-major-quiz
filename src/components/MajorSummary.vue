@@ -87,6 +87,6 @@ p {
     }
 }
 .select-box__container--content{
-    background-color: #b3d4fc !important;
+    background-color: #f8f8f8;
 }
 </style>

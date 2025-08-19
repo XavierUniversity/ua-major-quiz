@@ -77,6 +77,8 @@ h2 {
   border-color: #1a1aff;
   padding: 18px 24px !important;
   font-weight: 200;
+  color:black !important;
+  font-size: 16ox;
 
 
 
