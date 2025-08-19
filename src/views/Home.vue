@@ -15,7 +15,7 @@
       <v-text-field label="Last Name" v-model="lastName" :rules="[rules.empty()]"></v-text-field>
 
       <v-text-field label="Email" v-model="email" :rules="[rules.empty()]"></v-text-field>
-      <v-date-input v-model="birthdate" validate-on-blur :rules="[rules.empty()]" label="Birthdate"></v-date-input>
+      <v-date-input v-model="birthdate" validate-on-blur :year="startYear" :rules="[rules.empty()]" label="Birthdate"></v-date-input>
 
       <h3>What year will you graduate high school?</h3>
       <v-radio-group v-model="gradYear" :rules="[rules.empty()]">
@@ -47,8 +47,10 @@
 
   </div>
 
-  <div class="quiz__q" v-if="activePhase === 'loader'">
-    <h2>Let's get to know you a little better.</h2>
+  <div class="quiz__q" v-if="activePhase === 'loader' || activePhase === 'generate'">
+    <h2 v-if="activePhase == 'loader'">Let's get to know you a little better.</h2>
+    <h2 v-else>Generating Your Results.</h2>
+
     <br />
     <br />
 
@@ -78,9 +80,7 @@
         <v-btn v-if="questionIndex > 0" @click="prev" class="x-btn">
           &laquo; Previous
         </v-btn>
-        <v-btn v-if="questionIndex <= questionMap.length - 2" @click="next" class="x-btn next">
-          Next &raquo;
-        </v-btn>
+     
         <v-btn v-if="questionIndex == questionMap.length - 1" @click="score" class="x-btn next">
           Show my Major &raquo;
         </v-btn>
@@ -109,6 +109,7 @@ import rules from "@/assets/js/rules";
 //   'form',
 //   'loader'
 //   'quiz',
+//   'generate',
 //   'result',
 // 
 
@@ -134,16 +135,9 @@ const lastName = ref("");
 
 const email = ref("");
 
+const startYear = ref(new Date().getFullYear()-16);
 
-let tempdate = new Date();
-tempdate.setFullYear(tempdate.getFullYear() - 16);
-
-const year = tempdate.getFullYear();
-const month = String(tempdate.getMonth() + 1).padStart(2, "0");
-const day = String(tempdate.getDate()).padStart(2, "0");
-let temp = year + "-" + month + "-" + day
-
-const birthdate = ref(temp);
+const birthdate = ref("");
 const gradYear = ref("");
 const quizMode = ref("intro");
 
@@ -177,7 +171,12 @@ function incrementTimer() {
       incrementTimer()
     }, 75);
   } else {
-    activePhase.value = "quiz"
+    if (activePhase.value == 'loader') {
+      activePhase.value = "quiz"
+
+    } else {
+      activePhase.value = "result"
+    }
   }
 }
 
@@ -202,7 +201,7 @@ async function initialize() {
     }
 
     if (quizMode.value == "certain") {
-      activePhase.value = "result"
+      activePhase.value = "generate"
     } else {
       activePhase.value = "loader"
       loaderTimer.value = 0
@@ -228,9 +227,9 @@ function delayedNext() {
   preventRadioSelect.value = true;
   setTimeout(() => {
     preventRadioSelect.value = false;
-    if(questionIndex.value >= questionMap.value.length - 1){
+    if (questionIndex.value >= questionMap.value.length - 1) {
       score();
-    }else{
+    } else {
       next();
 
     }
@@ -244,22 +243,12 @@ function prev() {
 async function score() {
   await quizStore.postResults(userResponses.value);
   await quizStore.getOutcomeDetails(outcome.value.ID);
-  activePhase.value = "result";
+  activePhase.value = "generate";
 }
 
 const progress = computed(() => {
   return ((questionIndex.value) / questionMap.value.length) * 100
 });
-
-const emit = defineEmits(["restart"]);
-
-
-
-function restart() {
-  // got to quiz phase
-
-  emit("restart");
-}
 
 </script>
 
