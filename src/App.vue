@@ -33,7 +33,7 @@ html {
 
 .quiz {
   background-color: #0C2340;
-  background-image: url('@/assets/quiz-background.webp');
+  background-image: url('@/assets/bg-quiz.webp');
   background-size: cover fixed;
   background-repeat: repeat-y;
 
@@ -42,6 +42,10 @@ html {
   min-height: 100vh;
   flex-direction: column;
   margin: auto 0;
+
+  @media (max-width: 600px) {
+    background-image: url('@/assets/bg-quiz-mobile.webp');
+  }
 
   @media (min-width: 992px) {
     display: flex;
@@ -129,7 +133,7 @@ h1 {
   padding: 0px !important;
 }
 
-.hero{
+.hero {
   display: none !important;
 }
 </style>
