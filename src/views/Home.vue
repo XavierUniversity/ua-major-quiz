@@ -61,7 +61,7 @@
 
   <div class="quiz__q" v-if="activePhase === 'quiz'">
     <div class="progress" v-if="progress <= 100">
-      <div class="progress" style="border-color: #0c2340; background-color: #0c2340; margin: 0; color: white;"
+      <div class="progress" style="border-color: #1a1aff; background-color: #1a1aff; margin: 0; color: white;"
         :style="{ width: progress + '%' }">
       </div>
     </div>
