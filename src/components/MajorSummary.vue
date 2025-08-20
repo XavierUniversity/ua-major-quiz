@@ -86,4 +86,7 @@ p {
         padding-left: 10px;
     }
 }
+.select-box__container--content{
+    background-color: #f8f8f8;
+}
 </style>

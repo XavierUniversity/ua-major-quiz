@@ -77,13 +77,13 @@ h2 {
   border-color: #1a1aff;
   padding: 18px 24px !important;
   font-weight: 200;
-
-
+  color:black;
+  font-size: 16px;
 
 
   &:hover {
     background-color: #1a1aff;
-    color: white
+    color: white;
   }
 
 }

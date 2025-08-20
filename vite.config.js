@@ -15,7 +15,7 @@ plugins:[  vue({
     autoImport: true,
     styles: { configFile: "./src/styles/vuetifySettings.scss" },
   }),],
-  base: "/major-quiz/test",
+  base: "/major-quiz/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
