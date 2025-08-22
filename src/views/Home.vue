@@ -189,6 +189,7 @@ async function initialize() {
       email: email.value,
       birthdate: birthdate.value,
       major: selectedMajor.value,
+      quizMode: quizMode.value,
       gradYear: gradYear.value
     };
 
