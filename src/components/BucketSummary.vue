@@ -78,8 +78,7 @@ h2 {
   padding: 18px 24px !important;
   font-weight: 200;
   color:black;
-  font-size: 16px;
-
+  font-size: 16px !important;
 
   &:hover {
     background-color: #1a1aff;
