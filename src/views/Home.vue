@@ -188,10 +188,13 @@ async function initialize() {
       lastName: lastName.value,
       email: email.value,
       birthdate: birthdate.value,
-      major: selectedMajor.value,
       quizMode: quizMode.value,
       gradYear: gradYear.value
     };
+
+    if(majorsMap.value[selectedMajor.value] !== undefined ){
+      sendData.major = majorsMap.value[selectedMajor.value].MajorID
+    }
 
     await quizStore.setInstance(sendData);
     if (["certain", "explore"].includes(quizMode.value)) {
